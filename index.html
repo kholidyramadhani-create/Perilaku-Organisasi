@@ -250,8 +250,21 @@
         .question-text {
             font-size: 1.05rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             font-weight: 500;
+        }
+
+        .statements {
+            background: var(--gray-light);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            border-left: 4px solid var(--primary);
+        }
+        .statements div {
+            padding: 4px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .options {
@@ -525,6 +538,13 @@
                 height: 32px;
                 font-size: 0.7rem;
             }
+            .statements {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            .statements div {
+                font-size: 0.85rem;
+            }
         }
 
         .flex-between {
@@ -747,7 +767,7 @@
                 💡 Pilih mode lalu klik "Mulai Latihan"
             </div>
 
-            <!-- ===== QRIS SECTION (DITINGKATKAN) ===== -->
+            <!-- ===== QRIS SECTION ===== -->
             <div class="qris-section">
                 <div class="qris-title">
                     <span class="icon">💳</span> Dukung Perjalanan Ibadah
@@ -777,6 +797,7 @@
             </div>
 
             <div class="question-text" id="questionText">Loading...</div>
+            <div id="statementsContainer"></div>
 
             <div class="options" id="optionsContainer"></div>
 
@@ -833,22 +854,38 @@
 
     <script>
         // ============================================================
-        //  1.  DATA SOAL (135 SOAL) - dari file LATSOL PERILAKU ORGANISASI
+        //  1.  DATA SOAL (135 SOAL) + statements untuk tipe combination
         // ============================================================
         const MASTER_QUESTIONS = [
             // ---- Soal 1 ----
             { id: 1, question: "Beberapa keuntungan menggunakan sistem kepemimpinan model Likert adalah...", type: 'combination',
-                correctKey: '123', explanation: "Semua pernyataan benar." },
+                correctKey: '123', explanation: "Semua pernyataan benar.",
+                statements: [
+                    "dapat dicapai keseimbangan antara pengetahuan tentang produksi dan manusia sebagai pelakunya",
+                    "terjadi integrasi antara tujuan pribadi dengan tujuan organisasi",
+                    "semakin tinggi peran dan komitmen pegawai terhadap organisasinya, semakin tinggi tingkat produktivitasnya"
+                ] },
             // ---- Soal 2 ----
             { id: 2, question: "Beberapa perbedaan manajemen dibandingkan dengan kepemimpinan antara lain....",
-                type: 'combination', correctKey: '13', explanation: "Manajemen mengatasi kerumitan, kepemimpinan mengatasi perubahan." },
+                type: 'combination', correctKey: '13', explanation: "Manajemen mengatasi kerumitan, kepemimpinan mengatasi perubahan.",
+                statements: [
+                    "manajemen mengatasi kerumitan",
+                    "kepemimpinan lebih berorientasi pada tugas",
+                    "kepemimpinan mengatasi perubahan"
+                ] },
             // ---- Soal 3 ----
             { id: 3, question: "Pernyataan berikut ini yang berkaitan dengan pengertian hubungan manusiawi dalam arti luas diantaranya....",
                 type: 'combination', correctKey: '23',
-                explanation: "Studi tentang kerja sama kelompok dan perpaduan orang dalam situasi kerja." },
+                explanation: "Studi tentang kerja sama kelompok dan perpaduan orang dalam situasi kerja.",
+                statements: [
+                    "hubungan manusiawi terbatas pada lingkungan kerja",
+                    "studi tentang kerja sama kelompok",
+                    "perpaduan orang dalam situasi kerja"
+                ] },
             // ---- Soal 4 ----
             { id: 4, question: "Lima jenjang kebutuhan Maslow tidak dapat membuat prediksi tentang perilaku manusia, hal ini dapat dijelaskan sebagai berikut....",
-                type: 'mcq', options: ["A. Kebutuhan manusia diperoleh dari budaya suatu masyarakat",
+                type: 'mcq', options: [
+                    "A. Kebutuhan manusia diperoleh dari budaya suatu masyarakat",
                     "B. Seseorang memiliki kebutuhan yang beragam dan itu sangat manusiawi dan hal wajar",
                     "C. Kebutuhan manusia sangat banyak dan beragam, dan yang sangat mendesak belum tentu terjadi secara berurutan",
                     "D. Seseorang yang mempunyai kebutuhan yang sangat mendesak akan termotivasi untuk memenuhi kebutuhan hidup"
@@ -859,7 +896,8 @@
                 explanation: "Harapan adalah unsur terkuat menurut teori persepsi." },
             // ---- Soal 6 ----
             { id: 6, question: "Tujuan utama prinsip-prinsip manajemen ilmiah menurut Taylor adalah...", type: 'mcq',
-                options: ["A. Menghilangkan antagonisme antara majikan dan pekerja",
+                options: [
+                    "A. Menghilangkan antagonisme antara majikan dan pekerja",
                     "B. Menggantikan unsur manusia dengan unsur mesin",
                     "C. Meningkatkan produktivitas dunia industri",
                     "D. Menjadikan orientasi kerja sebagai hal utama"
@@ -880,7 +918,8 @@
                 ], correct: 2, explanation: "Tiga asumsi Vroom: harapan hasil, valensi, harapan usaha." },
             // ---- Soal 9 ----
             { id: 9, question: "Gaya eksekutif sebagai gaya kepemimpinan situasional yang efektif memiliki ciri-ciri...",
-                type: 'mcq', options: ["A. Memberikan perhatian kepada usaha mencapai tujuan melalui pelaksanaan tugas dan kesamaan hubungan kerja",
+                type: 'mcq', options: [
+                    "A. Memberikan perhatian kepada usaha mencapai tujuan melalui pelaksanaan tugas dan kesamaan hubungan kerja",
                     "B. Memberikan perhatian besar kepada hubungan dan lebih kecil perhatiannya terhadap tugas-tugas",
                     "C. Memberikan perhatian tinggi kepada guru dan perhatian rendah kepada hubungan kerja",
                     "D. Memberikan perhatian kecil kepada tugas-tugas dan hubungan kerja"
@@ -891,21 +930,33 @@
                 explanation: "Konflik antar peran terjadi karena harapan yang bertentangan." },
             // ---- Soal 11 ----
             { id: 11, question: "Seorang konsultan sebagai pihak ketiga dalam penyelesaian konflik menampilkan perilaku berikut...",
-                type: 'mcq', options: ["A. Menggunakan persuasi dan penalaran kepada pihak-pihak yang berkonflik",
+                type: 'mcq', options: [
+                    "A. Menggunakan persuasi dan penalaran kepada pihak-pihak yang berkonflik",
                     "B. Memiliki wewenang untuk memaksakan kehendaknya agar pihak yang berkonflik melakukan persetujuan memecahkan masalah",
                     "C. Terampil dan adil dalam menyelesaikan konflik melalui komunikasi dan analisis yang tajam",
                     "D. Bertindak tidak hanya sekedar komunikasi informal, melakukan pencarian dan penemuan fakta, penafsiran pesan dan melakukan persuasi terhadap pihak-pihak yang berkonflik"
                 ], correct: 2, explanation: "Konsultan menyelesaikan konflik dengan keterampilan dan keadilan." },
             // ---- Soal 12 ----
             { id: 12, question: "Berikut ini pernyataan yang berkaitan dengan konsep kekuasaan diantaranya...",
-                type: 'combination', correctKey: '123', explanation: "Semua pernyataan benar." },
+                type: 'combination', correctKey: '123', explanation: "Semua pernyataan benar.",
+                statements: [
+                    "kekuasaan adalah kemampuan untuk mempengaruhi orang lain",
+                    "kekuasaan berasal dari posisi atau pribadi",
+                    "kekuasaan dapat digunakan untuk mencapai tujuan"
+                ] },
             // ---- Soal 13 ----
             { id: 13, question: "Dalam kepemimpinan situasional model Hersey dan Blanchard maka bawahan yang berada pada tingkat kematangan M-1 memerlukan....",
                 type: 'combination', correctKey: '23',
-                explanation: "M-1 memerlukan pengarahan tinggi dan pengerahan besar." },
+                explanation: "M-1 memerlukan pengarahan tinggi dan pengerahan besar.",
+                statements: [
+                    "hubungan yang erat dengan pemimpin",
+                    "pengarahan tinggi",
+                    "pengerahan besar"
+                ] },
             // ---- Soal 14 ----
             { id: 14, question: "Kekuasaan posisi dalam organisasi cenderung mengalir ke bawah maknanya adalah...",
-                type: 'mcq', options: ["A. Kekuasaan posisi diperoleh karena kedudukan seseorang dalam organisasi",
+                type: 'mcq', options: [
+                    "A. Kekuasaan posisi diperoleh karena kedudukan seseorang dalam organisasi",
                     "B. Kekuasaan posisi tidak otomatis dan inheren dalam organisasi",
                     "C. Kekuasaan yang diperoleh dari pengikutnya untuk dijadikan acuan dalam menjalankan kewenangannya sesuai kesepakatan",
                     "D. Hubungan antara atasan dan bawahan yang memperoleh kekuasaan akan sangat menentukan besar atau kecilnya kekuasaan jabatan/ posisi"
@@ -916,17 +967,24 @@
                 explanation: "Pernyataan dan alasan benar dan berhubungan." },
             // ---- Soal 16 ----
             { id: 16, question: "Terdapat banyak faktor yang menentukan status seseorang dalam kelompoknya, antara lain...",
-                type: 'combination', correctKey: '123', explanation: "Semua faktor berpengaruh." },
+                type: 'combination', correctKey: '123', explanation: "Semua faktor berpengaruh.",
+                statements: [
+                    "kontribusi terhadap tujuan kelompok",
+                    "sifat pribadi yang menonjol",
+                    "kedudukan formal dalam kelompok"
+                ] },
             // ---- Soal 17 ----
             { id: 17, question: "Peranan tugas sebagai salah satu peranan fungsional bagi anggota kelompok, adalah peranan yang dapat...",
-                type: 'mcq', options: ["A. Mempertahankan keutuhan kelompok",
+                type: 'mcq', options: [
+                    "A. Mempertahankan keutuhan kelompok",
                     "B. Memperkuat dan mengatur kelompok",
                     "C. Memperlancar pengaruh dalam memecahkan masalah kelompok",
                     "D. Mengganggu kemajuan dan usaha kelompok"
                 ], correct: 2, explanation: "Peran tugas memperlancar pemecahan masalah." },
             // ---- Soal 18 ----
             { id: 18, question: "Persamaan ciri komunikasi organisasi pada era manajemen klasik dan Era Human relation adalah...",
-                type: 'mcq', options: ["A. Bersifat formal",
+                type: 'mcq', options: [
+                    "A. Bersifat formal",
                     "B. Komunikasi atasan dan bawahan bersifat bottom up",
                     "C. Tidak ada komunikasi horizontal",
                     "D. Komunikasi dilakukan semata-mata sebagai alat kontrol pimpinan terhadap bawahan"
@@ -934,13 +992,28 @@
             // ---- Soal 19 ----
             { id: 19, question: "Berikut ini pernyataan yang benar tentang dinamika kelompok adalah...",
                 type: 'combination', correctKey: '13',
-                explanation: "Dinamika kelompok meningkatkan kerjasama dan tergantung interaksi anggota." },
+                explanation: "Dinamika kelompok meningkatkan kerjasama dan tergantung interaksi anggota.",
+                statements: [
+                    "dinamika kelompok meningkatkan kerjasama",
+                    "dinamika kelompok bersifat statis",
+                    "dinamika kelompok tergantung interaksi anggota"
+                ] },
             // ---- Soal 20 ----
             { id: 20, question: "Komunikasi verbal dapat berupa bahasa...", type: 'combination', correctKey: '12',
-                explanation: "Lisan dan tulisan adalah bentuk verbal." },
+                explanation: "Lisan dan tulisan adalah bentuk verbal.",
+                statements: [
+                    "lisan",
+                    "tulisan",
+                    "isyarat"
+                ] },
             // ---- Soal 21 ----
             { id: 21, question: "Efektivitas komunikasi ditentukan oleh upaya berikut...", type: 'combination',
-                correctKey: '123', explanation: "Semua upaya meningkatkan efektivitas." },
+                correctKey: '123', explanation: "Semua upaya meningkatkan efektivitas.",
+                statements: [
+                    "kejelasan pesan",
+                    "pemahaman bersama",
+                    "umpan balik yang tepat"
+                ] },
             // ---- Soal 22 ----
             { id: 22, question: "Salah satu tipe kelompok formal adalah kelompok komando. Kelompok ini dibentuk berdasarkan...",
                 type: 'mcq', options: ["A. Penugasan tertentu", "B. Bagan organisasi", "C. Kepentingan yang sama",
@@ -948,7 +1021,8 @@
                 ], correct: 1, explanation: "Kelompok komando berdasarkan bagan organisasi." },
             // ---- Soal 23 ----
             { id: 23, question: "Karakteristik orang-orang dalam organisasi berdasarkan asumsi teori 'Y' adalah...",
-                type: 'mcq', options: ["A. Adanya campur tangan pimpinan secara intensif",
+                type: 'mcq', options: [
+                    "A. Adanya campur tangan pimpinan secara intensif",
                     "B. Pimpinan hanya bertugas membenahi kemampuan anggota organisasi",
                     "C. Pimpinan memberi petunjuk secara detail mengenai pelaksanaan pekerjaan kantor",
                     "D. Pimpinan mengendalikan perilaku bawahannya"
@@ -963,13 +1037,24 @@
                 explanation: "Pola diagonal jarang digunakan tapi efektif." },
             // ---- Soal 26 ----
             { id: 26, question: "Pesan non verbal sangat penting bagi para pelaku komunikasi, berfungsi....",
-                type: 'combination', correctKey: '123', explanation: "Semua fungsi benar." },
+                type: 'combination', correctKey: '123', explanation: "Semua fungsi benar.",
+                statements: [
+                    "menggantikan kata-kata",
+                    "menekankan pesan verbal",
+                    "mengungkapkan emosi"
+                ] },
             // ---- Soal 27 ----
             { id: 27, question: "Beberapa hal yang menjadi pertimbangan dalam proses pengambilan keputusan diantaranya...",
-                type: 'combination', correctKey: '123', explanation: "Semua tahapan penting." },
+                type: 'combination', correctKey: '123', explanation: "Semua tahapan penting.",
+                statements: [
+                    "identifikasi masalah",
+                    "pengembangan alternatif",
+                    "evaluasi alternatif"
+                ] },
             // ---- Soal 28 ----
             { id: 28, question: "Perbedaan antara kegiatan yang terarah ke tujuan dengan kegiatan tujuan terletak pada...",
-                type: 'mcq', options: ["A. Kebutuhan intrinsik dan kebutuhan ekstrinsik",
+                type: 'mcq', options: [
+                    "A. Kebutuhan intrinsik dan kebutuhan ekstrinsik",
                     "B. Pengaruhnya terhadap kekuatan kebutuhan",
                     "C. Kekuatan motif untuk dipuaskan",
                     "D. Perilaku motivational"
@@ -980,7 +1065,8 @@
                 explanation: "Motivasi adalah daya penggerak." },
             // ---- Soal 30 ----
             { id: 30, question: "Kegiatan operant conditioning pada modifikasi perilaku dalam organisasi yang dilakukan seorang manajer bertujuan",
-                type: 'mcq', options: ["A. Mengenali perilaku khusus karyawan",
+                type: 'mcq', options: [
+                    "A. Mengenali perilaku khusus karyawan",
                     "B. Memperkuat perilaku kinerja yang penting",
                     "C. Mengukur berapa kali terjadi perilaku khusus dari karyawan",
                     "D. Mengevaluasi perubahan dalam perilaku"
@@ -992,14 +1078,16 @@
                 ], correct: 2, explanation: "Dinamika kelompok mencakup interaksi kebutuhan dan norma." },
             // ---- Soal 32 ----
             { id: 32, question: "Pernyataan di bawah ini yang tepat mengenai teori kebutuhan dari Maslow adalah...",
-                type: 'mcq', options: ["A. Jika manusia menemui halangan dalam memenuhi kebutuhan, maka dia akan mencari kebutuhan lain yang mungkin dapat terpenuhi",
+                type: 'mcq', options: [
+                    "A. Jika manusia menemui halangan dalam memenuhi kebutuhan, maka dia akan mencari kebutuhan lain yang mungkin dapat terpenuhi",
                     "B. Kebutuhan yang paling rendah akan berusaha dipuaskan",
                     "C. Manusia memiliki kebutuhan dari yang sederhana hingga kebutuhan yang rumit",
                     "D. Kebutuhan yang telah terpuaskan akan tetap menjadi pendorong untuk berperilaku"
                 ], correct: 2, explanation: "Maslow menyatakan hierarki kebutuhan dari sederhana ke rumit." },
             // ---- Soal 33 ----
             { id: 33, question: "Kesatu paduan kelompok akan mendorong perilaku anggotanya menuju ke arah berikut...",
-                type: 'mcq', options: ["A. Konsekuensi positif yaitu Menghilangkan sifat dan perilaku individualistis dan kinerja yang rendah",
+                type: 'mcq', options: [
+                    "A. Konsekuensi positif yaitu Menghilangkan sifat dan perilaku individualistis dan kinerja yang rendah",
                     "B. Konsekuensi negatif berupa hukuman yang diberikan kelompok kepada anggotanya",
                     "C. Kepatuhan pada norma-norma yang berlaku dan dimilikinya kapasitas untuk menyelesaikan tugas-tugas kelompok",
                     "D. Perasaan saling menerima dan saling percaya di antara para anggota"
@@ -1012,10 +1100,16 @@
             // ---- Soal 35 ----
             { id: 35, question: "Pernyataan berikut ini yang benar tentang perilaku keorganisasian adalah....",
                 type: 'combination', correctKey: '12',
-                explanation: "Perilaku organisasi mencakup pandangan makro dan desain struktur." },
+                explanation: "Perilaku organisasi mencakup pandangan makro dan desain struktur.",
+                statements: [
+                    "pandangan makro terhadap organisasi",
+                    "desain dan struktur organisasi",
+                    "hanya fokus pada individu"
+                ] },
             // ---- Soal 36 ----
             { id: 36, question: "Kriteria evaluasi kinerja perlu mempertimbangkan beberapa hal adalah", type: 'mcq',
-                options: ["A. Bersifat praktis dan berguna baik bagi yang dinilai maupun yang menilai",
+                options: [
+                    "A. Bersifat praktis dan berguna baik bagi yang dinilai maupun yang menilai",
                     "B. Dapat memberikan harapan promosi, efektivitas dan keputusan seleksi",
                     "C. Meningkatkan pengertian manajerial bagi para manajer",
                     "D. Mencapai kesimpulan evaluatif atas kinerja pegawai"
@@ -1026,7 +1120,8 @@
                 explanation: "Artifacts adalah budaya nyata." },
             // ---- Soal 38 ----
             { id: 38, question: "Menurut Cimmings & Schwab terdapat tahapan-tahapan dalam manajemen by objektive atau MBO adalah....",
-                type: 'mcq', options: ["A. Perencanaan tujuan, bekerja ke arah pencapaian tujuan, manajer dan karyawan bertumpu pada wakil tertentu, serta tujuan baru direncanakan, tujuan lanjut disesuaikan dan diperteguh",
+                type: 'mcq', options: [
+                    "A. Perencanaan tujuan, bekerja ke arah pencapaian tujuan, manajer dan karyawan bertumpu pada wakil tertentu, serta tujuan baru direncanakan, tujuan lanjut disesuaikan dan diperteguh",
                     "B. Pokok persoalan pokok dokumentasi titik pokok pilihan dan pokok perbandingan",
                     "C. Struktur, peranan, hirarki dan norma-norma",
                     "D. Kepemimpinan yang sportif, motivasi yang berkembang komunikasi terbuka, dan pengambilan keputusan bersama"
@@ -1044,7 +1139,8 @@
                 ], correct: 1, explanation: "Peran adalah pola perilaku yang diharapkan dari posisi." },
             // ---- Soal 41 ----
             { id: 41, question: "Aspek manusia dalam organisasi Jika ditinjau dari psikologi sosial menekankan pada masalah",
-                type: 'mcq', options: ["A. Sikap manusia, interaksi sosial, dan kebudayaan",
+                type: 'mcq', options: [
+                    "A. Sikap manusia, interaksi sosial, dan kebudayaan",
                     "B. Perilaku sosial, teknis dan keluarga",
                     "C. Individu atau kelompok yang mempengaruhi dan mengubah perilaku orang lain",
                     "D. perilaku manusia dalam lingkungan keorganisasian"
@@ -1052,17 +1148,24 @@
             // ---- Soal 42 ----
             { id: 42, question: "Kegagalan penerapan manajement by objektif (MBO) di Indonesia antara lain disebabkan oleh...",
                 type: 'combination', correctKey: '13',
-                explanation: "Harapan tidak realistis dan ketidakmampuan memberikan reward." },
+                explanation: "Harapan tidak realistis dan ketidakmampuan memberikan reward.",
+                statements: [
+                    "harapan yang tidak realistis",
+                    "kurangnya komitmen pimpinan",
+                    "ketidakmampuan memberikan reward"
+                ] },
             // ---- Soal 43 ----
             { id: 43, question: "Kepribadian merupakan seperangkat perilaku yang membentuk ciri/karakter respon seseorang terhadap situasi dan waktu tertentu, cenderung menekankan pada aspek...",
-                type: 'mcq', options: ["A. Ciri merupakan awal terbentuknya perilaku atau menjadi penyebab perilaku",
+                type: 'mcq', options: [
+                    "A. Ciri merupakan awal terbentuknya perilaku atau menjadi penyebab perilaku",
                     "B. Stimulus seseorang terhadap lingkungan tertentu akan menghasilkan respon atau perilaku tertentu pula terhadap lingkungan tersebut",
                     "C. Pembentukan ciri terpisah secara kultural karena merupakan bagian dari sifat manusia",
                     "D. Memahami lingkungan adalah suatu proses yang aktif seseorang mencoba membuat lingkungannya itu mempunyai arti baginya"
                 ], correct: 0, explanation: "Kepribadian menekankan ciri sebagai penyebab perilaku." },
             // ---- Soal 44 ----
             { id: 44, question: "Pembentukan perilaku manusia menurut teori kebutuhan yang dipelajari salah satunya berasumsi bahwa....",
-                type: 'mcq', options: ["A. Kepuasan pekerjaan akan meningkatkan motivasi secara kuat",
+                type: 'mcq', options: [
+                    "A. Kepuasan pekerjaan akan meningkatkan motivasi secara kuat",
                     "B. Kebutuhan manusia diperoleh karena adanya kebudayaan",
                     "C. Perilaku manusia dikuasai oleh personalitasnya",
                     "D. Manusia ingin memenuhi berbagai kebutuhan yang berbeda"
@@ -1070,14 +1173,20 @@
             // ---- Soal 45 ----
             { id: 45, question: "Pendekatan metodologi dalam pengembangan pengendalian mutu terpadu (PMT) terdiri atas...",
                 type: 'combination', correctKey: '13',
-                explanation: "Keterpaduan organisasi dan spesifikasi tanggung jawab." },
+                explanation: "Keterpaduan organisasi dan spesifikasi tanggung jawab.",
+                statements: [
+                    "keterpaduan organisasi",
+                    "pengawasan mutu produksi",
+                    "spesifikasi tanggung jawab"
+                ] },
             // ---- Soal 46 ----
             { id: 46, question: "Gaya kepemimpinan yang hanya sedikit menggunakan kewenangan terhadap bawahan adalah gaya...",
                 type: 'mcq', options: ["A. Otokratik", "B. Bebas", "C. Demokratis", "D. Partisipatif"], correct: 1,
                 explanation: "Gaya bebas (laissez-faire) sedikit menggunakan kewenangan." },
             // ---- Soal 47 ----
             { id: 47, question: "Seorang manajer dapat disebut sebagai seorang pemimpin dengan kriteria...", type: 'mcq',
-                options: ["A. Mampu melakukan kegiatan yang lebih dari sekedar memimpin",
+                options: [
+                    "A. Mampu melakukan kegiatan yang lebih dari sekedar memimpin",
                     "B. Melaksanakan kewenangan dan tanggung jawab menggunakan unsur-unsur manajemen secara efektif dan efisien",
                     "C. Mampu mempengaruhi dan menggerakkan orang lain ke arah tercapainya tujuan baik tujuan organisasi, kelompok, ataupun tujuan pribadinya",
                     "D. Memandang kerja sebagai suatu proses dalam urutan peristiwa atau dalam proses pembuatan keputusan"
@@ -1098,21 +1207,33 @@
                 ], correct: 0, explanation: "Tugas fungsional dan perilaku." },
             // ---- Soal 51 ----
             { id: 51, question: "Gerakan hubungan manusiawi atau hubungan Insani atau human relation mengandung makna...",
-                type: 'mcq', options: ["A. Organisasi merupakan jaringan hubungan yang saling bergantung",
+                type: 'mcq', options: [
+                    "A. Organisasi merupakan jaringan hubungan yang saling bergantung",
                     "B. Aspek komunikasi persuasif, sugesti dan motivasi menimbulkan kepuasan pada kedua belah pihak yaitu atasan dan bawahan",
                     "C. Pekerja adalah manusia yang kompleks dan unik",
                     "D. Kerjasama dan semangat kerja dalam proses manajemen"
                 ], correct: 1, explanation: "Human relation menekankan komunikasi persuasif, sugesti, dan motivasi." },
             // ---- Soal 52 ----
             { id: 52, question: "Ciri-ciri wewenang tradisional adalah...", type: 'combination', correctKey: '23',
-                explanation: "Wewenang tradisional berdasarkan ketentuan tradisional dan melembaga." },
+                explanation: "Wewenang tradisional berdasarkan ketentuan tradisional dan melembaga.",
+                statements: [
+                    "bersifat rasional",
+                    "berdasarkan ketentuan tradisional",
+                    "melembaga dalam masyarakat"
+                ] },
             // ---- Soal 53 ----
             { id: 53, question: "Motivasi menurut teori harapan dan motivasi dari Vroom dijelaskan bahwa orang akan termotivasi bilamana ia percaya bahwa....",
                 type: 'combination', correctKey: '12',
-                explanation: "Percaya perilaku menghasilkan output dan output bernilai positif." },
+                explanation: "Percaya perilaku menghasilkan output dan output bernilai positif.",
+                statements: [
+                    "perilaku menghasilkan output tertentu",
+                    "output tersebut bernilai positif",
+                    "usaha akan menghasilkan kinerja"
+                ] },
             // ---- Soal 54 ----
             { id: 54, question: "Pendekatan kontinensi model Fiedler didasarkan pada asumsi bahwa...", type: 'mcq',
-                options: ["A. Orang lebih termotivasi dengan adanya imbalan dalam bekerja",
+                options: [
+                    "A. Orang lebih termotivasi dengan adanya imbalan dalam bekerja",
                     "B. Efektivitas kepemimpinan tergantung kepada cara pimpinan menggunakan profesi bawahan",
                     "C. Pemimpin yang unggul adalah yang mampu memuaskan pelanggan",
                     "D. Seorang pemimpin juga dibentuk oleh faktor-faktor situasional"
@@ -1128,7 +1249,12 @@
                 explanation: "Arbitrator memiliki wewenang memaksa." },
             // ---- Soal 57 ----
             { id: 57, question: "Berikut ini pernyataan yang benar tentang konsep kekuasaan adalah...", type: 'combination',
-                correctKey: '123', explanation: "Semua pernyataan benar." },
+                correctKey: '123', explanation: "Semua pernyataan benar.",
+                statements: [
+                    "kekuasaan dapat berasal dari berbagai sumber",
+                    "kekuasaan mempengaruhi perilaku orang lain",
+                    "kekuasaan selalu bersifat positif"
+                ] },
             // ---- Soal 58 ----
             { id: 58, question: "Gaya kepemimpinan yang cocok diterapkan ketika bawahan mempunyai tingkat kematangan yang sedang adalah gaya...",
                 type: 'mcq', options: ["A. Partisipasi", "B. Delegasi", "C. Pengerahan", "D. Instruksi"], correct: 0,
@@ -1139,10 +1265,16 @@
                 explanation: "Kekuasaan legitimasi berasal dari hierarki formal." },
             // ---- Soal 60 ----
             { id: 60, question: "Komunikasi antar budaya dapat dipengaruhi beberapa faktor, diantaranya...",
-                type: 'combination', correctKey: '123', explanation: "Semua faktor mempengaruhi." },
+                type: 'combination', correctKey: '123', explanation: "Semua faktor mempengaruhi.",
+                statements: [
+                    "perbedaan bahasa",
+                    "perbedaan nilai dan norma",
+                    "perbedaan persepsi"
+                ] },
             // ---- Soal 61 ----
             { id: 61, question: "Konflik dalam sebuah kelompok dapat terjadi disebabkan oleh...", type: 'mcq',
-                options: ["A. Ketiadaan persaingan yang tetap antara para anggota",
+                options: [
+                    "A. Ketiadaan persaingan yang tetap antara para anggota",
                     "B. Ada penghargaan dari pimpinan Meskipun tidak ada kontribusi dari masing-masing anggota",
                     "C. Sistem reward and punishment diterapkan tanpa kriteria yang disepakati bersama",
                     "D. Ketidaktegasan sikap pimpinan terhadap bawahan"
@@ -1158,17 +1290,24 @@
             // ---- Soal 64 ----
             { id: 64, question: "Untuk menciptakan dinamika kelompok yang baik dalam sebuah organisasi, maka ada beberapa hal yang perlu diperhatikan diantaranya....",
                 type: 'combination', correctKey: '12',
-                explanation: "Sasaran jelas dan komunikasi terbuka." },
+                explanation: "Sasaran jelas dan komunikasi terbuka.",
+                statements: [
+                    "sasaran yang jelas",
+                    "komunikasi yang terbuka",
+                    "kepemimpinan yang otoriter"
+                ] },
             // ---- Soal 65 ----
             { id: 65, question: "Komunikasi non verbal selain dapat membantu kita memahami lebih mendalam bahasa verbal, dapat pula merumitkan komunikasi verbal, dalam arti...",
-                type: 'mcq', options: ["A. Komunikasi non verbal sering tidak bersifat universal artinya tidak bisa memberi makna yang sama untuk situasi yang berbeda",
+                type: 'mcq', options: [
+                    "A. Komunikasi non verbal sering tidak bersifat universal artinya tidak bisa memberi makna yang sama untuk situasi yang berbeda",
                     "B. Komunikasi nonverbal sering tidak bersifat universal artinya bergantung pada intonasi (penekanan) kata-katanya",
                     "C. Adanya faktor jarak fisik dan tempat ketika berinteraksi",
                     "D. Adanya tekanan waktu pada saat komunikasi berlangsung"
                 ], correct: 0, explanation: "Nonverbal tidak universal sehingga bisa merumitkan." },
             // ---- Soal 66 ----
             { id: 66, question: "Agar komunikasi dalam organisasi berlangsung efektif maka seorang manajer perlu memperhatikan beberapa faktor diantaranya...",
-                type: 'mcq', options: ["A. Ucapan konsisten dengan perbuatan",
+                type: 'mcq', options: [
+                    "A. Ucapan konsisten dengan perbuatan",
                     "B. Menerapkan pola komunikasi satu arah",
                     "C. Pimpinan Puncak mendelegasikan kegiatan komunikasi kepada kepala bagian",
                     "D. Meminimalkan komunikasi langsung tatap muka"
@@ -1179,23 +1318,32 @@
                 explanation: "Motif ekonomi karena keuntungan finansial." },
             // ---- Soal 68 ----
             { id: 68, question: "Perilaku manusia dalam organisasi yang termasuk dalam asumsi teori X antara lain adalah...",
-                type: 'mcq', options: ["A. Mereka sangat berambisius", "B. Suka bekerja keras",
+                type: 'mcq', options: [
+                    "A. Mereka sangat berambisius",
+                    "B. Suka bekerja keras",
                     "C. Motivasi hanya timbul pada jenjang fisiologis",
                     "D. Perlu dipaksa terlebih dahulu untuk mencapai tujuan organisasi"
                 ], correct: 3, explanation: "Teori X: perlu dipaksa." },
             // ---- Soal 69 ----
             { id: 69, question: "Model tingkah laku dalam pengambilan keputusan berkaitan dengan beberapa hal, diantaranya...",
-                type: 'mcq', options: ["A. Ketersediaan data dan informasi yang cukup",
+                type: 'mcq', options: [
+                    "A. Ketersediaan data dan informasi yang cukup",
                     "B. Harapan tentang konsekuensi keputusan",
                     "C. Konflik yang timbul sebagai dampak pemecahan masalah",
                     "D. Terstruktur tidaknya masalah yang dihadapi"
                 ], correct: 1, explanation: "Harapan tentang konsekuensi keputusan." },
             // ---- Soal 70 ----
             { id: 70, question: "Fungsi utama komunikasi ke organisasian menurut Stephen P. Robins (1996) adalah",
-                type: 'combination', correctKey: '123', explanation: "Semua fungsi benar." },
+                type: 'combination', correctKey: '123', explanation: "Semua fungsi benar.",
+                statements: [
+                    "menginformasikan",
+                    "mengatur",
+                    "memotivasi"
+                ] },
             // ---- Soal 71 ----
             { id: 71, question: "Menurut banyak pakar komunikasi, komunikasi yang paling efektif dapat tercapai apabila...",
-                type: 'mcq', options: ["A. Disampaikan secara langsung tatap muka",
+                type: 'mcq', options: [
+                    "A. Disampaikan secara langsung tatap muka",
                     "B. Komunikator mengenal secara pribadi para komunikan",
                     "C. Tercapainya kesepahaman bersama antara komunikator dan komunikan",
                     "D. Hanya disampaikan melalui bahasa verbal"
@@ -1206,13 +1354,24 @@
                 explanation: "Pengambilan keputusan." },
             // ---- Soal 73 ----
             { id: 73, question: "Contoh kategori kegiatan yang terarah ke tujuan diantaranya adalah...", type: 'combination',
-                correctKey: '13', explanation: "Kegiatan yang terarah ke tujuan (1 dan 3)." },
+                correctKey: '13', explanation: "Kegiatan yang terarah ke tujuan (1 dan 3).",
+                statements: [
+                    "bekerja sesuai target",
+                    "bekerja tanpa arah",
+                    "mencapai hasil yang diharapkan"
+                ] },
             // ---- Soal 74 ----
             { id: 74, question: "Dasar dari timbulnya motivasi seorang individu adalah...", type: 'combination',
-                correctKey: '123', explanation: "Semua benar." },
+                correctKey: '123', explanation: "Semua benar.",
+                statements: [
+                    "kebutuhan internal",
+                    "dorongan dari lingkungan",
+                    "keinginan untuk mencapai tujuan"
+                ] },
             // ---- Soal 75 ----
             { id: 75, question: "Klasifikasi motivasi Rational Ekonomic Man didasarkan pada asumsi bahwa...", type: 'mcq',
-                options: ["A. Perilaku manusia dapat dimotivasi secara finansial oleh organisasinya",
+                options: [
+                    "A. Perilaku manusia dapat dimotivasi secara finansial oleh organisasinya",
                     "B. Manusia memperoleh eksistensi identitasnya melalui hubungan dengan orang lain",
                     "C. Perilaku manusia dapat dilihat dari usahanya memenuhi jenjang kebutuhan yang tinggi",
                     "D. Terdapat perbedaan kemampuan dan Kebutuhan individu dalam organisasi"
@@ -1223,16 +1382,29 @@
                 explanation: "Ditinjau dari aspek motivasi." },
             // ---- Soal 77 ----
             { id: 77, question: "Faktor-faktor yang dapat menentramkan pegawai menurut Hertzberg diantaranya adalah...",
-                type: 'combination', correctKey: '123', explanation: "Semua faktor hygiene." },
+                type: 'combination', correctKey: '123', explanation: "Semua faktor hygiene.",
+                statements: [
+                    "gaji yang layak",
+                    "kondisi kerja yang aman",
+                    "kebijakan perusahaan yang adil"
+                ] },
             // ---- Soal 78 ----
             { id: 78, question: "Kegiatan pengembangan kelompok yang membiarkan kemungkinan menilai hubungan antar anggota serta bagaimana mereka mematuhi norma kelompok, dalam modal proses pengembangan kelompok terjadi pada tahapan....",
-                type: 'mcq', options: ["A. Motivasi dan produktivitas", "B. Pengendalian dan organisasi",
-                    "C. Komunikasi dan pengambilan keputusan", "D. Saling menerima (mutual acceptance)"
+                type: 'mcq', options: [
+                    "A. Motivasi dan produktivitas",
+                    "B. Pengendalian dan organisasi",
+                    "C. Komunikasi dan pengambilan keputusan",
+                    "D. Saling menerima (mutual acceptance)"
                 ], correct: 3, explanation: "Tahap saling menerima." },
             // ---- Soal 79 ----
             { id: 79, question: "Budaya organisasi dapat terlihat secara nyata, teramati, dirasakan, dipahami dan dialami oleh seluruh anggota organisasi dalam bentuk...",
                 type: 'combination', correctKey: '12',
-                explanation: "Keteraturan perilaku dan nilai-nilai baku." },
+                explanation: "Keteraturan perilaku dan nilai-nilai baku.",
+                statements: [
+                    "keteraturan perilaku",
+                    "nilai-nilai baku",
+                    "simbol-simbol fisik"
+                ] },
             // ---- Soal 80 ----
             { id: 80, question: "Subsistem ada dalam organisasi yang berfungsi melaksanakan transaksi input dan output. Adalah subsistem...",
                 type: 'mcq', options: ["A. Produksi", "B. Rentangan batas", "C. Pemeliharaan", "D. Adaptasi"], correct: 1,
@@ -1246,13 +1418,15 @@
                 ], correct: 0, explanation: "Memberikan harapan promosi dan seleksi." },
             // ---- Soal 82 ----
             { id: 82, question: "Kebudayaan mempunyai ciri-ciri antara lain....", type: 'mcq', options: [
-                    "A. Berkaitan dengan ciri-ciri biologis", "B. Hanya berkembang di satu generasi",
+                    "A. Berkaitan dengan ciri-ciri biologis",
+                    "B. Hanya berkembang di satu generasi",
                     "C. Mempunyai pola dan terintegrasi sebagai satu kebulatan",
                     "D. Tidak bersifat adaptif"
                 ], correct: 2, explanation: "Budaya memiliki pola dan terintegrasi." },
             // ---- Soal 83 ----
             { id: 83, question: "Kegiatan yang dilakukan dalam tahapan bekerja ke arah pencapaian tujuan dalam manajemen by objektif (MBO) adalah...",
-                type: 'mcq', options: ["A. Manajer dan karyawan bertamu membahas tujuan yang akan dicapai selama periode tertentu",
+                type: 'mcq', options: [
+                    "A. Manajer dan karyawan bertamu membahas tujuan yang akan dicapai selama periode tertentu",
                     "B. Manajer dan karyawan membahas target operasional yang spesifik",
                     "C. Karyawan mewujudkan rencana menuju ke arah pencapaian tujuan",
                     "D. Manajer dan karyawan bertemu mengkaji ulang semua yang terjadi selama periode kinerja"
@@ -1268,7 +1442,8 @@
                 ], correct: 2, explanation: "Peran berganda." },
             // ---- Soal 86 ----
             { id: 86, question: "Tantangan utama seorang manajer/pimpinan adalah mengelola perilaku orang-orang di dalam organisasi, hal ini atas dasar asumsi berikut...",
-                type: 'mcq', options: ["A. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami sebagai hasil interaksi antara unsur individu dan unsur lingkungan",
+                type: 'mcq', options: [
+                    "A. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami sebagai hasil interaksi antara unsur individu dan unsur lingkungan",
                     "B. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami sebagai perilaku termotivasi",
                     "C. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami dari sudut pandang martabat dan nilai-nilai yang dianutnya",
                     "D. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami dari aspek intensitas berperilaku dalam cara-cara tertentu"
@@ -1283,7 +1458,8 @@
                 explanation: "Humanistik fokus pada perwujudan diri." },
             // ---- Soal 89 ----
             { id: 89, question: "Dalam memahami perilaku manusia maka teori kognitif membahas tentang...", type: 'mcq',
-                options: ["A. Hubungan stimulan dan respon berkaitan dengan pemrosesan informasi antara rangsangan dan jawaban",
+                options: [
+                    "A. Hubungan stimulan dan respon berkaitan dengan pemrosesan informasi antara rangsangan dan jawaban",
                     "B. Faktor-faktor dalam diri seseorang yang mengarahkan perilakunya",
                     "C. Proses motivasi seseorang",
                     "D. Jenjang kebutuhan manusia"
@@ -1294,35 +1470,57 @@
                 explanation: "Pendekatan metodologi." },
             // ---- Soal 91 ----
             { id: 91, question: "Sistem kepemimpinan otokrasi bijak yang dikemukakan Likert memiliki ciri diantaranya ...",
-                type: 'mcq', options: ["A. Munculnya organisasi informasi dalam organisasi",
+                type: 'mcq', options: [
+                    "A. Munculnya organisasi informasi dalam organisasi",
                     "B. Ada sedikit komunikasi ke atas meskipun terdistorsi",
                     "C. Pengambilan keputusan dilakukan kelompok",
                     "D. Pengambilan keputusan dilakukan di seluruh jenjang organisasi"
                 ], correct: 1, explanation: "Otokrasi bijak memiliki komunikasi ke atas yang terdistorsi." },
             // ---- Soal 92 ----
             { id: 92, question: "Dalam sebuah organisasi hal yang membedakan manajer dengan pemimpin, diantaranya karena manajer...",
-                type: 'mcq', options: ["A. Cenderung mengambil sikap impersonal",
+                type: 'mcq', options: [
+                    "A. Cenderung mengambil sikap impersonal",
                     "B. Berhubungan dengan orang-orang dengan cara empati",
                     "C. Mempunyai lingkup kegiatan yang lebih singkat daripada pemimpin",
                     "D. Mengembangkan visi masa depan"
                 ], correct: 0, explanation: "Manajer cenderung impersonal, pemimpin lebih empati." },
             // ---- Soal 93 ----
             { id: 93, question: "Hubungan manusiawi dalam arti luas mempunyai ciri-ciri antara lain...", type: 'combination',
-                correctKey: '13', explanation: "Berorientasi kegiatan dan bersifat interkomotif-dialogis." },
+                correctKey: '13', explanation: "Berorientasi kegiatan dan bersifat interkomotif-dialogis.",
+                statements: [
+                    "berorientasi kegiatan",
+                    "bersifat formal",
+                    "bersifat interkomotif-dialogis"
+                ] },
             // ---- Soal 94 ----
             { id: 94, question: "Komunikasi yang efektif di dalam organisasi ditandai oleh hal berikut...", type: 'combination',
                 correctKey: '13',
-                explanation: "Manajer sadar pentingnya komunikasi dan komunikasi sebagai proses berkelanjutan." },
+                explanation: "Manajer sadar pentingnya komunikasi dan komunikasi sebagai proses berkelanjutan.",
+                statements: [
+                    "manajer sadar pentingnya komunikasi",
+                    "komunikasi hanya satu arah",
+                    "komunikasi sebagai proses berkelanjutan"
+                ] },
             // ---- Soal 95 ----
             { id: 95, question: "Unsur yang paling kuat mempengaruhi vitalitas kerja menurut teori persepsi adalah...",
                 type: 'mcq', options: ["A. Pemenuhan Harapan", "B. Harapan awal", "C. Kinerja", "D. Peluang"], correct: 1,
                 explanation: "Harapan awal adalah unsur terkuat." },
             // ---- Soal 96 ----
             { id: 96, question: "Penemuan study Hawthorne yang membawa implikasi penting dalam pengembangan perilaku organisasi, adalah...",
-                type: 'combination', correctKey: '123', explanation: "Semua implikasi benar." },
+                type: 'combination', correctKey: '123', explanation: "Semua implikasi benar.",
+                statements: [
+                    "perhatian khusus meningkatkan produktivitas",
+                    "faktor sosial mempengaruhi kinerja",
+                    "hubungan antar manusia penting"
+                ] },
             // ---- Soal 97 ----
             { id: 97, question: "Pernyataan yang benar tentang konsep wewenang adalah....", type: 'combination',
-                correctKey: '12', explanation: "Wewenang bersumber dari posisi dan peranan formal." },
+                correctKey: '12', explanation: "Wewenang bersumber dari posisi dan peranan formal.",
+                statements: [
+                    "bersumber dari posisi formal",
+                    "bersumber dari peranan formal",
+                    "bersumber dari kepribadian"
+                ] },
             // ---- Soal 98 ----
             { id: 98, question: "Asumsi valensi dalam teori harapan mengandung pengertian...", type: 'mcq', options: [
                     "A. Penilaian subjektif seseorang atas kemungkinan bahwa ia akan memperoleh tertentu dari sebuah tindakan",
@@ -1332,7 +1530,8 @@
                 ], correct: 2, explanation: "Valensi adalah nilai yang diberikan pada hasil." },
             // ---- Soal 99 ----
             { id: 99, question: "Model kepemimpinan manajemen by wondering around (MBWA) Tom Peters dan Nancy Austin menekankan pada kemampuan...",
-                type: 'mcq', options: ["A. Mendorong seluruh jajaran organisasi untuk selalu berkreasi dan berkarya secara inovatif termasuk penggunaan alat-alat produksi modern",
+                type: 'mcq', options: [
+                    "A. Mendorong seluruh jajaran organisasi untuk selalu berkreasi dan berkarya secara inovatif termasuk penggunaan alat-alat produksi modern",
                     "B. Menetapkan dan menjelaskan tujuan yang akan dicapai kepada bawahannya dan membantu mereka menemukan solusi untuk mencapai tujuan",
                     "C. Menumbuhkan inisiatif dan menggali kreativitas bawahan",
                     "D. Menyediakan fasilitas kegiatan bawaan"
@@ -1343,35 +1542,44 @@
                 correct: 0, explanation: "Pandangan hubungan manusiawi." },
             // ---- Soal 101 ----
             { id: 101, question: "Peran seorang mediator dalam penyelesaian konflik adalah....", type: 'mcq',
-                options: ["A. Memecahkan masalah dengan cara persuasif kepada pihak-pihak yang berkonflik",
+                options: [
+                    "A. Memecahkan masalah dengan cara persuasif kepada pihak-pihak yang berkonflik",
                     "B. Memaksakan kehendaknya agar para pihak yang berkonflik setuju menyelesaikan masalah",
                     "C. Melakukan komunikasi informal kepada para pihak yang berkonflik",
                     "D. Mengerjakan masalah konflik dengan cara komunikasi dan analisis"
                 ], correct: 3, explanation: "Mediator mengerjakan konflik dengan komunikasi dan analisis." },
             // ---- Soal 102 ----
             { id: 102, question: "Kepemimpinan dan kekuasaan merupakan konsep yang berkaitan satu sama lain namun memiliki perbedaan dalam hal...",
-                type: 'mcq', options: ["A. Ketergantungan yang menimbulkan perilaku tertentu",
+                type: 'mcq', options: [
+                    "A. Ketergantungan yang menimbulkan perilaku tertentu",
                     "B. Kesesuaian tujuan antara pemimpin dan bawahan",
                     "C. Penggunaan kekuasaan pada posisi tertentu",
                     "D. Menentukan atau membatasi hasil-hasil"
                 ], correct: 1, explanation: "Perbedaan pada kesesuaian tujuan." },
             // ---- Soal 103 ----
             { id: 103, question: "Kekuasaan hubungan efektif diterapkan kepada bawahan yang berada pada tingkat kematangan M-2 karena...",
-                type: 'mcq', options: ["A. bawahan akan sangat terbantu dalam pelaksanaan tugas apabila pemimpin mau menjelaskan berbagai hal yang berkaitan dengan tugas bawahan",
+                type: 'mcq', options: [
+                    "A. bawahan akan sangat terbantu dalam pelaksanaan tugas apabila pemimpin mau menjelaskan berbagai hal yang berkaitan dengan tugas bawahan",
                     "B. Bawahan akan lebih bergairah dalam bekerja Apabila ada hubungan yang baik dengan atasannya",
                     "C. Bawahan sangat menghormati keabsahan jabatan/posisi yang dipegang pimpinan",
                     "D. Mempertebal rasa keyakinan dan meningkatkan semangat kerja bawahan"
                 ], correct: 1, explanation: "M-2 butuh hubungan baik." },
             // ---- Soal 104 ----
             { id: 104, question: "Ada beberapa kemungkinan yang mempengaruhi pemilihan cara atau taktik kekuasaan adalah....",
-                type: 'combination', correctKey: '123', explanation: "Semua faktor mempengaruhi." },
+                type: 'combination', correctKey: '123', explanation: "Semua faktor mempengaruhi.",
+                statements: [
+                    "tujuan yang ingin dicapai",
+                    "karakteristik bawahan",
+                    "budaya organisasi"
+                ] },
             // ---- Soal 105 ----
             { id: 105, question: "Jika komunikator dan penerima pesan dalam sebuah proses komunikasi yang mempunyai kultur yang berbeda maka akan tercipta sebuah komunikasi....",
                 type: 'mcq', options: ["A. Antar pribadi", "B. Antar budaya", "C. Antar generasi", "D. Antar individu"],
                 correct: 1, explanation: "Komunikasi antar budaya." },
             // ---- Soal 106 ----
             { id: 106, question: "Pengaruh Persaingan di dalam kelompok akan memunculkan perilaku berikut....", type: 'mcq',
-                options: ["A. Koordinasi kerja yang baik perhatian dari para anggota dan pemahaman yang bersama terhadap informasi",
+                options: [
+                    "A. Koordinasi kerja yang baik perhatian dari para anggota dan pemahaman yang bersama terhadap informasi",
                     "B. Berorientasi prestasi Kerja dan komunikasi terbuka",
                     "C. Persepsi positif anggota terhadap kelompoknya dan interaksi lebih terbuka",
                     "D. Koordinasi sulit diciptakan, tidak menyukai pekerjaannya dan tidak menyukai kelompoknya"
@@ -1382,12 +1590,16 @@
                 explanation: "Menawarkan ide adalah peran tugas." },
             // ---- Soal 108 ----
             { id: 108, question: "Komunikasi organisasi pada era sumber daya manusia ditandai dengan ciri-ciri diantaranya...",
-                type: 'mcq', options: ["A. Bersifat bottom up", "B. Pengambilan keputusan dilakukan secara sentralisasi",
-                    "C. Cenderung formal", "D. Komunikasi digunakan untuk mendukung perencanaan partisipatif"
+                type: 'mcq', options: [
+                    "A. Bersifat bottom up",
+                    "B. Pengambilan keputusan dilakukan secara sentralisasi",
+                    "C. Cenderung formal",
+                    "D. Komunikasi digunakan untuk mendukung perencanaan partisipatif"
                 ], correct: 3, explanation: "Era SDM mendukung perencanaan partisipatif." },
             // ---- Soal 109 ----
             { id: 109, question: "Agar dinamika kelompok dapat terpelihara dengan baik, maka harus diperhatikan beberapa hal berikut, adalah....",
-                type: 'mcq', options: ["A. Sasaran yang jelas dan ditetapkan bersama, komunikasi yang terbuka dan efektif, kepemimpinan yang efektif dan adanya norma-norma dan pertumbuhan kelompok",
+                type: 'mcq', options: [
+                    "A. Sasaran yang jelas dan ditetapkan bersama, komunikasi yang terbuka dan efektif, kepemimpinan yang efektif dan adanya norma-norma dan pertumbuhan kelompok",
                     "B. Interaksi dan perilaku positif yang dapat meningkatkan prestasi kerja",
                     "C. Keserasian dan keharmonisan antara kekuatan-kekuatan motivasi non ekonomi yang dimiliki anggota kelompok",
                     "D. Terciptanya kerjasama yang positif dan terwujudnya koordinasi yang baik"
@@ -1395,10 +1607,16 @@
                 explanation: "Dinamika kelompok memerlukan sasaran jelas, komunikasi terbuka, kepemimpinan efektif, norma." },
             // ---- Soal 110 ----
             { id: 110, question: "Berikut ini yang termasuk ciri-ciri komunikasi non verbal adalah...", type: 'combination',
-                correctKey: '12', explanation: "Intonasi dan gerakan tubuh." },
+                correctKey: '12', explanation: "Intonasi dan gerakan tubuh.",
+                statements: [
+                    "intonasi suara",
+                    "gerakan tubuh",
+                    "kata-kata tertulis"
+                ] },
             // ---- Soal 111 ----
             { id: 111, question: "Manfaat dari perilaku pimpinan yang selaras antara tindakan dengan perkataan adalah ...",
-                type: 'mcq', options: ["A. Mencairkan hubungan pimpinan dengan bawahan",
+                type: 'mcq', options: [
+                    "A. Mencairkan hubungan pimpinan dengan bawahan",
                     "B. Meningkatkan kredibilitas pemimpin",
                     "C. Menciptakan iklim keterbukaan",
                     "D. Timbulnya pemahaman pimpinan terhadap olahan karyawan"
@@ -1409,26 +1627,32 @@
                 explanation: "Kelompok informal memenuhi kebutuhan sosial." },
             // ---- Soal 113 ----
             { id: 113, question: "Ditinjau dari teori hierarki kebutuhan A.H. Maslow, mereka yang masuk asumsi teori 'Y' akan menampilkan perilaku motivasional dengan ciri memiliki...",
-                type: 'mcq', options: ["A. Motivasi kerja yang tinggi dan kuat",
+                type: 'mcq', options: [
+                    "A. Motivasi kerja yang tinggi dan kuat",
                     "B. Perilaku untuk memelihara semangat kerja",
                     "C. Kebutuhan order rendah seperti kebutuhan fisik, rasa aman, dan sosial",
                     "D. Kebutuhan order tinggi seperti kebutuhan penghargaan atas prestasi yang diraihnya dan aktualisasi diri"
                 ], correct: 3, explanation: "Teori Y memiliki kebutuhan order tinggi." },
             // ---- Soal 114 ----
             { id: 114, question: "Kondisi-kondisi seperti ketidakpastian dan risiko harus diperhatikan manajer dalam proses pengambilan keputusan, khususnya pada tahapan...",
-                type: 'mcq', options: ["A. Pengembangan alternatif", "B. Evaluasi alternatif-alternatif",
-                    "C. Pemilihan alternatif", "D. Identifikasi masalah"
+                type: 'mcq', options: [
+                    "A. Pengembangan alternatif",
+                    "B. Evaluasi alternatif-alternatif",
+                    "C. Pemilihan alternatif",
+                    "D. Identifikasi masalah"
                 ], correct: 1, explanation: "Evaluasi alternatif mempertimbangkan risiko." },
             // ---- Soal 115 ----
             { id: 115, question: "Salah satu hambatan dalam komunikasi ke organisasian adalah jargon, yakni berupa...",
-                type: 'mcq', options: ["A. Terlalu banyaknya informasi yang diterima Manager",
+                type: 'mcq', options: [
+                    "A. Terlalu banyaknya informasi yang diterima Manager",
                     "B. Penggunaan simbol-simbol yang berbeda",
                     "C. Istilah khusus yang hanya dipahami anggota kelompok tertentu saja",
                     "D. Kegiatan penguraian sandi yang berbeda"
                 ], correct: 2, explanation: "Jargon adalah istilah khusus kelompok." },
             // ---- Soal 116 ----
             { id: 116, question: "Menurut Rogers dan Kincaid (1981) komunikasi yang efektif adalah komunikasi yang dapat menciptakan...",
-                type: 'mcq', options: ["A. Kesepahaman dan kesepakatan bersama antara komunikator dan komunikan",
+                type: 'mcq', options: [
+                    "A. Kesepahaman dan kesepakatan bersama antara komunikator dan komunikan",
                     "B. Penyampaian informasi dan pengertian dengan menggunakan tanda-tanda yang sama",
                     "C. Nilai-nilai kepercayaan diantara komunikator dan komunikan",
                     "D. Perubahan perilaku yang sengaja dibangun untuk keperluan berkomunikasi"
@@ -1436,10 +1660,16 @@
             // ---- Soal 117 ----
             { id: 117, question: "Jenis keputusan yang dibedakan menurut kejadian dan proses pengambilan keputusan, adalah keputusan",
                 type: 'combination', correctKey: '12',
-                explanation: "Keputusan terprogram dan tidak terprogram." },
+                explanation: "Keputusan terprogram dan tidak terprogram.",
+                statements: [
+                    "terprogram",
+                    "tidak terprogram",
+                    "semi terprogram"
+                ] },
             // ---- Soal 118 ----
             { id: 118, question: "Jack Halloran (1981) mengaitkan motivasi dan perilaku sebagai berikut...", type: 'mcq',
-                options: ["A. Perilaku muncul karena adanya upaya pemenuhan kebutuhan",
+                options: [
+                    "A. Perilaku muncul karena adanya upaya pemenuhan kebutuhan",
                     "B. Perilaku seseorang sebagai tidak rasional",
                     "C. Motivasi adalah kebutuhan internal yang dipuaskan melalui upaya-upaya eksternal",
                     "D. Perilaku manusia akan terjadi pada saat kebutuhan yang sangat kuat untuk segera dipenuhi"
@@ -1453,7 +1683,8 @@
                 ], correct: 2, explanation: "Teori proses menganalisis alasan perilaku." },
             // ---- Soal 120 ----
             { id: 120, question: "Asumsi yang mendasari klasifikasi motivasi Complex Man adalah manusia...", type: 'mcq',
-                options: ["A. Memiliki perbedaan kemampuan dan kebutuhan",
+                options: [
+                    "A. Memiliki perbedaan kemampuan dan kebutuhan",
                     "B. Dapat dimotivasi oleh kebutuhan ekonominya",
                     "C. Memperoleh keberadaan identitasnya melalui hubungan dengan orang lain",
                     "D. Memerlukan tantangan dan rasa bangga terhadap pekerjaannya"
@@ -1482,7 +1713,8 @@
                 correct: 3, explanation: "Filsafat organisasi." },
             // ---- Soal 125 ----
             { id: 125, question: "Perilaku keorganisasian menurut Stephen B. Robins (1990) merupakan pandangan makro terhadap organisasi, yaitu membahas....",
-                type: 'mcq', options: ["A. Aspek-aspek tingkah laku manusia dalam organisasi atau kelompok tertentu",
+                type: 'mcq', options: [
+                    "A. Aspek-aspek tingkah laku manusia dalam organisasi atau kelompok tertentu",
                     "B. Desain dan struktur organisasi serta proses perilaku individu dan kelompok",
                     "C. Aspek yang ditimbulkan dari pengaruh organisasi terhadap manusia dan sebaliknya pengaruh manusia terhadap organisasinya",
                     "D. Proses pembentukan Persepsi, nilai-nilai dan motivasi"
@@ -1494,23 +1726,36 @@
                 ], correct: 1, explanation: "Evaluasi kinerja berbasis komputer." },
             // ---- Soal 127 ----
             { id: 127, question: "Kebudayaan memiliki ciri-ciri diantaranya....", type: 'mcq', options: [
-                    "A. Berkaitan dengan ciri-ciri biologis", "B. Bersifat simbolik",
-                    "C. Tidak terintegrasi sebagai suatu kebulatan", "D. Bersifat non adaptif"
+                    "A. Berkaitan dengan ciri-ciri biologis",
+                    "B. Bersifat simbolik",
+                    "C. Tidak terintegrasi sebagai suatu kebulatan",
+                    "D. Bersifat non adaptif"
                 ], correct: 1, explanation: "Budaya bersifat simbolik." },
             // ---- Soal 128 ----
             { id: 128, question: "Kegiatan yang dilakukan pada tahapan perencanaan tujuan menggunakan manajemen berdasarkan sasaran (MBS) diantaranya...",
                 type: 'combination', correctKey: '13',
-                explanation: "Manajer dan karyawan bertemu membahas tujuan dan merumuskan secara tertulis." },
+                explanation: "Manajer dan karyawan bertemu membahas tujuan dan merumuskan secara tertulis.",
+                statements: [
+                    "manajer dan karyawan bertemu membahas tujuan",
+                    "mengevaluasi hasil",
+                    "merumuskan tujuan secara tertulis"
+                ] },
             // ---- Soal 129 ----
             { id: 129, question: "Kegiatan analisis kinerja yang bertujuan menemukan perbedaan komunikasi manusia dan organisasi yang dianalisis dibandingkan dengan data, prinsip, atau keadaan lingkungan, terjadi pada tahapan pokok...",
                 type: 'mcq', options: ["A. Persoalan", "B. Pilihan", "C. Klasifikasi", "D. Dokumentasi"], correct: 2,
                 explanation: "Tahap klasifikasi." },
             // ---- Soal 130 ----
             { id: 130, question: "Peranan yang dimainkan oleh seorang individu di dalam kelompok atau organisasi dapat berbentuk....",
-                type: 'combination', correctKey: '123', explanation: "Semua bentuk peran." },
+                type: 'combination', correctKey: '123', explanation: "Semua bentuk peran.",
+                statements: [
+                    "peran tugas",
+                    "peran pemeliharaan",
+                    "peran mengganggu"
+                ] },
             // ---- Soal 131 ----
             { id: 131, question: "Salah satu asumsi penting tentang perilaku individu menurut Gibson adalah....", type: 'mcq',
-                options: ["A. Perilaku dapat timbul tanpa didahului adanya stimulus",
+                options: [
+                    "A. Perilaku dapat timbul tanpa didahului adanya stimulus",
                     "B. Rasa frustasi dan konflik dapat mengganggu perilaku yang terarah kepada tujuan",
                     "C. Tujuan diarahkan kepada perilaku",
                     "D. Motivasi timbul karena adanya perilaku"
@@ -1518,16 +1763,32 @@
             // ---- Soal 132 ----
             { id: 132, question: "Dampak yang mungkin terjadi dalam perubahan budaya organisasi di Indonesia karena menggunakan kinerja dari luar negeri antara lain...",
                 type: 'combination', correctKey: '12',
-                explanation: "Ketidaknyamanan karena mutu dan sistem ketat." },
+                explanation: "Ketidaknyamanan karena mutu dan sistem ketat.",
+                statements: [
+                    "ketidaknyamanan karena mutu",
+                    "sistem yang ketat",
+                    "peningkatan produktivitas"
+                ] },
             // ---- Soal 133 ----
             { id: 133, question: "Pendekatan ciri dalam teori kepribadian banyak mendapat kritikan tajam adalah....",
-                type: 'combination', correctKey: '123', explanation: "Semua kritikan benar." },
+                type: 'combination', correctKey: '123', explanation: "Semua kritikan benar.",
+                statements: [
+                    "tidak dapat menjelaskan perilaku",
+                    "terlalu umum",
+                    "tidak mempertimbangkan situasi"
+                ] },
             // ---- Soal 134 ----
             { id: 134, question: "Menurut Gibson dkk Sikap mempunyai pengaruh tertentu adalah...", type: 'combination',
-                correctKey: '123', explanation: "Semua pengaruh benar." },
+                correctKey: '123', explanation: "Semua pengaruh benar.",
+                statements: [
+                    "mempengaruhi perilaku",
+                    "mempengaruhi persepsi",
+                    "mempengaruhi motivasi"
+                ] },
             // ---- Soal 135 ----
             { id: 135, question: "Prinsip-prinsip kualitas yang terkandung dalam pengendalian mutu terpadu (PMT) adalah...",
-                type: 'mcq', options: ["A. Pengendalian tidak hanya pada hasil output saja tetapi ketika terdapat hasil Setiap proses",
+                type: 'mcq', options: [
+                    "A. Pengendalian tidak hanya pada hasil output saja tetapi ketika terdapat hasil Setiap proses",
                     "B. Segala kegiatan diprioritaskan pada kegiatan vital",
                     "C. Pengendalian selalu dimulai dengan Menetapkan sasaran yang terukur secara kuantitatif maupun kualitatif untuk menjamin ketepatannya",
                     "D. Berorientasi pelanggan artinya mutu yang ingin dicapai ditujukan untuk memelihara dan memuaskan pelanggan atau pengguna produk"
@@ -1567,6 +1828,7 @@
         const qNumDisplay = $('qNumDisplay');
         const qIndexDisplay = $('qIndexDisplay');
         const questionText = $('questionText');
+        const statementsContainer = $('statementsContainer');
         const optionsContainer = $('optionsContainer');
         const feedback = $('feedback');
         const feedbackAnswer = $('feedbackAnswer');
@@ -1732,17 +1994,9 @@
 
             for (let i = 0; i < source.length; i++) {
                 const q = source[i];
-                // Jika tipe 'combination' atau 'cause-effect', kita gunakan pendekatan khusus
-                // Karena data soal sudah memiliki options bawaan (dari MASTER_QUESTIONS)
-                // Kita akan tetap gunakan options dari data asli, tetapi untuk tipe mcq saja kita acak.
                 if (q.type === 'mcq') {
                     const opts = q.options.slice();
                     const correctText = opts[q.correct];
-                    // Acak posisi jawaban benar secara merata
-                    const shuffled = shuffle(opts);
-                    const newCorrect = shuffled.indexOf(correctText);
-                    // Tapi untuk distribusi merata, kita paksa posisi sesuai targetPositions[i]
-                    // Kita ambil semua opsi kecuali benar, lalu acak
                     const wrongOpts = opts.filter(o => o !== correctText);
                     shuffle(wrongOpts);
                     const newOpts = [];
@@ -1756,12 +2010,10 @@
                         question: q.question,
                         options: newOpts,
                         correct: target,
-                        explanation: q.explanation || 'Penjelasan tidak tersedia.'
+                        explanation: q.explanation || 'Penjelasan tidak tersedia.',
+                        statements: null
                     });
                 } else if (q.type === 'combination' || q.type === 'cause-effect') {
-                    // Untuk combination dan cause-effect, kita gunakan options yang sudah tersedia
-                    // karena pilihan jawaban sudah baku (A, B, C, D dengan kombinasi tertentu)
-                    // Kita tetap bisa mengacak posisi opsi, tetapi kita perlu menyesuaikan correct
                     const opts = q.options || (q.type === 'combination' ?
                         ['A. 1, 2, dan 3', 'B. 1 dan 2', 'C. 2 dan 3', 'D. 1 dan 3'] :
                         ['A. Pernyataan benar, alasan benar, dan keduanya menunjukkan hubungan sebab akibat',
@@ -1769,7 +2021,6 @@
                             'C. Pernyataan benar, alasan salah',
                             'D. Pernyataan salah, alasan benar'
                         ]);
-                    // Tentukan correctKey untuk combination
                     let correctIdx = 0;
                     if (q.type === 'combination') {
                         const comboMap = { '123': 0, '12': 1, '23': 2, '13': 3 };
@@ -1792,7 +2043,8 @@
                         question: q.question,
                         options: newOpts,
                         correct: target,
-                        explanation: q.explanation || 'Penjelasan tidak tersedia.'
+                        explanation: q.explanation || 'Penjelasan tidak tersedia.',
+                        statements: q.statements || null
                     });
                 }
             }
@@ -1858,6 +2110,15 @@
             qNumDisplay.textContent = `Soal ${currentIndex + 1}`;
             qIndexDisplay.textContent = `${currentIndex + 1} / ${currentQuestions.length}`;
             questionText.textContent = q.question;
+
+            // Tampilkan statements jika ada (hanya untuk tipe combination)
+            statementsContainer.innerHTML = '';
+            if (q.statements && q.statements.length > 0) {
+                const div = document.createElement('div');
+                div.className = 'statements';
+                div.innerHTML = q.statements.map((s, idx) => `<div>${idx+1}) ${s}</div>`).join('');
+                statementsContainer.appendChild(div);
+            }
 
             optionsContainer.innerHTML = '';
             const selected = answers[currentIndex];
