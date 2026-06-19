@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Latihan Soal Manajemen Proyek</title>
+    <title>Latihan Soal Perilaku Organisasi</title>
     <style>
         /* ===== RESET & VARIABEL ===== */
         * {
@@ -635,8 +635,17 @@
             background: #fff;
         }
 
+        .qris-section .qris-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 99px;
+            margin: 10px auto 12px;
+            opacity: 0.4;
+        }
+
         .qris-section .qris-caption {
-            margin-top: 14px;
+            margin-top: 6px;
             font-size: 1.25rem;
             font-weight: 800;
             color: var(--primary);
@@ -652,15 +661,6 @@
             color: var(--text-secondary);
             margin-top: 4px;
             font-weight: 500;
-        }
-
-        .qris-section .qris-divider {
-            width: 60px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 99px;
-            margin: 10px auto 12px;
-            opacity: 0.4;
         }
 
         @media (max-width: 640px) {
@@ -702,7 +702,7 @@
         <!-- ===== HEADER ===== -->
         <div class="card">
             <div class="header-top">
-                <h1>📘 Manajemen Proyek <small>135 Soal</small></h1>
+                <h1>📘 Perilaku Organisasi <small>135 Soal</small></h1>
                 <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                     <span class="header-stats">
                         <span id="progressText">0/0</span>
@@ -833,1494 +833,706 @@
 
     <script>
         // ============================================================
-        //  1.  DATA SOAL (135 SOAL) dari LATSOL MANAJEMEN PROYEK
+        //  1.  DATA SOAL (135 SOAL) - dari file LATSOL PERILAKU ORGANISASI
         // ============================================================
-        const MASTER_QUESTIONS = [{
-            id: 1,
-            question: "Kriteria keputusan Initial Rate Return (IRR) untuk proyek independen adalah jika ....",
-            options: [
-                "A. IRR > Cost of capital maka proyek diterima",
-                "B. IRR < Cost of capital maka proyek ditolak",
-                "C. IRR = Cost of equity maka proyek diterima",
-                "D. IRR > Cost of equity maka proyek ditolak"
-            ],
-            correct: 0,
-            explanation: "IRR > Cost of capital → proyek diterima (kunci: 1)"
-        }, {
-            id: 2,
-            question: "Salah satu pertimbangan yang ada dalam faktor keuangan yang digunakan untuk evaluasi proyek yakni...",
-            options: [
-                "A. Peluang market shared yang terkait dengan segmentasi pasar",
-                "B. Ukuran pasar potensial",
-                "C. Waktu yang digunakan untuk mengembalikan modal proyek",
-                "D. Waktu pengerjaan dengan menggunakan konsep skala prioritas"
-            ],
-            correct: 2,
-            explanation: "Waktu pengembalian modal (payback period) adalah faktor keuangan."
-        }, {
-            id: 3,
-            question: "Upaya yang dapat dilakukan dalam menjamin kualitas proyek dari sisi pengorganisasian adalah...",
-            options: [
-                "A. membuat penghematan di berbagai lini agar terwujud efisiensi anggaran",
-                "B. menggunakan teknik penggerakan kualitas proyek",
-                "C. membentuk tim kerja mandiri dan tim kerja profesional",
-                "D. membuat rencana perbaikan kualitas"
-            ],
-            correct: 2,
-            explanation: "Membentuk tim kerja mandiri dan profesional (kunci: 3)"
-        }, {
-            id: 4,
-            question: "Tolak ukur mutu yang menitikberatkan bahwa produk atau jasa yang dihasilkan harus sesuai dengan standar desain adalah...",
-            options: [
-                "A. Kesesuaian",
-                "B. Penggunaan",
-                "C. Desain",
-                "D. Bahan"
-            ],
-            correct: 0,
-            explanation: "Kesesuaian (conformance) terhadap standar desain."
-        }, {
-            id: 5,
-            question: "Aspek dasar dan pemasaran yang dinilai dalam studi kelayakan adalah...",
-            options: [
-                "A. aspek budaya",
-                "B. potensi pasar",
-                "C. jumlah konsumen potensial",
-                "D. potensi pasar dan jumlah konsumen potensial"
-            ],
-            correct: 3,
-            explanation: "Potensi pasar & jumlah konsumen potensial (kunci: 2 & 3)"
-        }, {
-            id: 6,
-            question: "Karakteristik penjaminan kualitas adalah...",
-            options: [
-                "A. aktivitas yang sistematis dan terencana",
-                "B. dilakukan dengan menggunakan sistem kualitas",
-                "C. tujuannya untuk memastikan barang/jasa sesuai standar",
-                "D. semua pernyataan benar"
-            ],
-            correct: 3,
-            explanation: "Semua pernyataan benar (kunci: 1,2,3)"
-        }, {
-            id: 7,
-            question: "Berikut ini yang merupakan dimensi kualitas menurut Juran adalah...",
-            options: [
-                "A. kemudahan",
-                "B. kesesuaian",
-                "C. keamanan",
-                "D. semua benar"
-            ],
-            correct: 1,
-            explanation: "Kesesuaian adalah dimensi Juran (kunci: 2)"
-        }, {
-            id: 8,
-            question: "Ciri dari organisasi produk adalah...",
-            options: [
-                "A. perusahaan memiliki beragam jenis produk",
-                "B. pembagian kerja berorientasi pada produk dan bersifat otonomi",
-                "C. pembagian kerja berdasarkan fungsi-fungsi manajemen",
-                "D. A dan B benar"
-            ],
-            correct: 3,
-            explanation: "Ciri organisasi produk: beragam produk & orientasi produk (kunci: 1 & 2)"
-        }, {
-            id: 9,
-            question: "Tujuan dilakukannya perencanaan proyek adalah...",
-            options: [
-                "A. mendorong upaya koordinasi",
-                "B. mengurangi ketidakpastian",
-                "C. mengurangi tumpang tindih aktivitas",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua tujuan perencanaan proyek (kunci: 1,2,3)"
-        }, {
-            id: 10,
-            question: "Jika dalam proyek 'pemberdayaan usaha perempuan dan anak putus sekolah' dilakukan pengamatan kinerja proyek, maka salah satu cara pengamatan kinerja tersebut adalah...",
-            options: [
-                "A. Kunjungan studi banding",
-                "B. Membuat catatan kajian dari laporan",
-                "C. Kunjungan informal ke seluruh unit kerja untuk mengamati kinerja",
-                "D. Menindaklanjuti hasil konsultasi dengan pakar"
-            ],
-            correct: 2,
-            explanation: "Kunjungan informal ke seluruh unit kerja (kunci: C)"
-        }, {
-            id: 11,
-            question: "Jenis evaluasi proyek yang dilakukan guna melihat keberhasilan suatu proyek dikenal dengan istilah...",
-            options: [
-                "A. Pre-Project evaluation",
-                "B. On-going Project evaluation",
-                "C. Completion Project Evolution",
-                "D. Post-Project Evolution"
-            ],
-            correct: 3,
-            explanation: "Post-Project Evaluation untuk melihat keberhasilan setelah proyek selesai."
-        }, {
-            id: 12,
-            question: "Teknik peramalan proyek dengan menggunakan seperangkat persamaan regresi untuk menyimulasikan segmen-segmen atau tindakan ekonomi disebut...",
-            options: [
-                "A. Analisis rangkaian waktu",
-                "B. Komposisi hasil proyek",
-                "C. Model regresi",
-                "D. Model ekonometrik"
-            ],
-            correct: 3,
-            explanation: "Model ekonometrik menggunakan persamaan regresi."
-        }, {
-            id: 13,
-            question: "Waktu mulai dini (early stage) bagi pekerjaan C ke E adalah pada hari... (lihat gambar network diagram)",
-            options: [
-                "A. 15 hari",
-                "B. 25 hari",
-                "C. 40 hari",
-                "D. 50 hari"
-            ],
-            correct: 1,
-            explanation: "Berdasarkan diagram, early start C→E = 25 hari."
-        }, {
-            id: 14,
-            question: "Pernyataan berikut yang menjadi keunggulan rencana kerja berbentuk bagan adalah...",
-            options: [
-                "A. tidak menunjukkan secara spesifik hubungan ketergantungan",
-                "B. sukar mengadakan perbaikan",
-                "C. disusun baris demi baris dari atas ke bawah",
-                "D. mudah dibaca dan dipahami"
-            ],
-            correct: 2,
-            explanation: "Keunggulan bagan: disusun baris demi baris (kunci: 3)"
-        }, {
-            id: 15,
-            question: "Salah satu manfaat utama dari penjaminan mutu proyek adalah...",
-            options: [
-                "A. Dapat menghemat biaya produksi",
-                "B. Menjamin diperolehnya SDM yang dibutuhkan",
-                "C. Hubungan dengan stakeholder berlangsung baik",
-                "D. Inovasi berkelanjutan lebih terjamin"
-            ],
-            correct: 0,
-            explanation: "Penjaminan mutu dapat menghemat biaya produksi (kunci: A)"
-        }, {
-            id: 16,
-            question: "Proses dari memonitor, mengevaluasi, dan membandingkan hasil yang direncanakan dengan hasil yang sesungguhnya untuk mengetahui kemajuan proyek dikenal dengan istilah...",
-            options: [
-                "A. Perencanaan proyek",
-                "B. Pengendalian proyek",
-                "C. Pengerahan proyek",
-                "D. Pengorganisasian proyek"
-            ],
-            correct: 1,
-            explanation: "Pengendalian proyek adalah proses tersebut."
-        }, {
-            id: 17,
-            question: "Semua biaya yang dikeluarkan sebagai sistem siap untuk dioperasionalkan merupakan definisi dari...",
-            options: [
-                "A. Procurement cost",
-                "B. Start up cost",
-                "C. Project related cost",
-                "D. On going cost"
-            ],
-            correct: 1,
-            explanation: "Start up cost adalah biaya persiapan operasional."
-        }, {
-            id: 18,
-            question: "Dalam proses mengorganisasikan proyek, urutan kegiatan setelah melakukan identifikasi dan klasifikasi adalah kegiatan...",
-            options: [
-                "A. Menyusun mekanisme koordinasi",
-                "B. Mengelompokkan pekerjaan",
-                "C. Menyiapkan pihak yang akan menangani pekerjaan",
-                "D. Membagi wewenang dan tanggung jawab"
-            ],
-            correct: 3,
-            explanation: "Setelah identifikasi & klasifikasi, dilanjutkan dengan pembagian wewenang dan tanggung jawab."
-        }, {
-            id: 19,
-            question: "Berikut adalah tipe bantuan dalam proyek diantaranya...",
-            options: [
-                "A. subsidi inti",
-                "B. subsidi proyek",
-                "C. tender",
-                "D. A dan B benar"
-            ],
-            correct: 3,
-            explanation: "Subsidi inti & subsidi proyek (kunci: 1 & 2)"
-        }, {
-            id: 20,
-            question: "Karakteristik umum dari sistem manajemen kualitas adalah...",
-            options: [
-                "A. mencakup aktivitas dalam organisasi modern",
-                "B. berfokus pada konsistensi dari proses kerja",
-                "C. pencegahan kesalahan bersifat proaktif",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua karakteristik benar (kunci: 1,2,3)"
-        }, {
-            id: 21,
-            question: "Lingkup penjaminan mutu proyek adalah atau sesuai urutan...",
-            options: [
-                "A. Perencanaan mutu → Penjaminan mutu → Pengendalian mutu",
-                "B. Perumusan sasaran → Implementasi → Evaluasi mutu",
-                "C. Diagnosis → Pengembangan sasaran → Evaluasi mutu",
-                "D. Evaluasi tahun sebelumnya → Revisi → Strategi → Implementasi"
-            ],
-            correct: 0,
-            explanation: "Urutan standar: perencanaan, penjaminan, pengendalian mutu."
-        }, {
-            id: 22,
-            question: "Evaluasi sumatif adalah jenis penilaian hasil-hasil yang telah dicapai secara keseluruhan dari...",
-            options: [
-                "A. Awal kegiatan sampai akhir kegiatan",
-                "B. Akhir proyek sesuai jangka waktu",
-                "C. Pertengahan proses pekerjaan",
-                "D. Pertengahan sampai akhir kegiatan"
-            ],
-            correct: 0,
-            explanation: "Evaluasi sumatif mencakup awal sampai akhir proyek."
-        }, {
-            id: 23,
-            question: "Tujuan investor melakukan studi kelayakan sebelum berinvestasi adalah untuk...",
-            options: [
-                "A. Memperoleh laba yang besar",
-                "B. Mempererat hubungan dengan pemerintah",
-                "C. Menjamin keamanan investasi",
-                "D. Memperoleh sumber daya yang murah"
-            ],
-            correct: 2,
-            explanation: "Menjamin keamanan investasi (kunci: C)"
-        }, {
-            id: 24,
-            question: "Fungsi pemimpin dalam organisasi di mana pemimpin berupaya menyelaraskan keseluruhan sistem agar mampu bekerja sama dan saling sinergis merupakan fungsi pemimpin organisasi proyek sebagai...",
-            options: [
-                "A. Perintis",
-                "B. Penyelaras",
-                "C. Pemberdayaan",
-                "D. Panutan"
-            ],
-            correct: 1,
-            explanation: "Fungsi penyelaras (kunci: B)"
-        }, {
-            id: 25,
-            question: "Kegunaan penjaminan mutu bagi pemilik proyek adalah...",
-            options: [
-                "A. Menyediakan data hasil inspeksi",
-                "B. Memberikan kepercayaan bahwa metode, material, peralatan sesuai regulasi",
-                "C. Menjadi umpan balik desain engineering di masa depan",
-                "D. Mencegah pengulangan pekerjaan"
-            ],
-            correct: 1,
-            explanation: "Memberikan kepercayaan terhadap kesesuaian regulasi (kunci: B)"
-        }, {
-            id: 26,
-            question: "Salah satu upaya mencapai dan memelihara kualitas dalam proyek diwujudkan melalui...",
-            options: [
-                "A. Audit keuangan",
-                "B. Manajemen by objective",
-                "C. Manajemen by performance",
-                "D. Six Sigma"
-            ],
-            correct: 3,
-            explanation: "Six Sigma adalah upaya pemeliharaan kualitas."
-        }, {
-            id: 27,
-            question: "Tugas manajemen misi proyek berkaitan dengan proses...",
-            options: [
-                "A. Pemantauan dan manajemen aliran sumber daya",
-                "B. Menyelesaikan proyek tepat waktu, biaya terbatas, mutu memadai",
-                "C. Mengolah sumber daya operasi sehari-hari",
-                "D. Perencanaan dan pengorganisasian proyek"
-            ],
-            correct: 1,
-            explanation: "Misi proyek: selesai tepat waktu, biaya terbatas, mutu memadai."
-        }, {
-            id: 28,
-            question: "Salah satu manfaat penerapan sistem manajemen mutu adalah...",
-            options: [
-                "A. Kualitas produk dijamin bagus",
-                "B. Harga produk dapat dikendalikan",
-                "C. Kepercayaan dan kepuasan pelanggan meningkat",
-                "D. Memudahkan penggantian manajer"
-            ],
-            correct: 2,
-            explanation: "Meningkatkan kepercayaan & kepuasan pelanggan (kunci: C)"
-        }, {
-            id: 29,
-            question: "Jika pimpinan proyek membagi tugas dengan mempertimbangkan kapasitas mandor/supervisor, maka menerapkan asas...",
-            options: [
-                "A. Hierarki",
-                "B. Kesatuan komando",
-                "C. Koordinasi",
-                "D. Rentang kendali"
-            ],
-            correct: 3,
-            explanation: "Rentang kendali mempertimbangkan kapasitas bawahan."
-        }, {
-            id: 30,
-            question: "Pernyataan yang tidak relevan dengan cara menentukan jumlah working capital adalah...",
-            options: [
-                "A. sesuai dengan jumlah pengeluaran kas setiap hari × periode perputaran",
-                "B. sesuai dengan jumlah aktiva yang dimiliki perusahaan",
-                "C. sesuai dengan jumlah dana investasi yang dibutuhkan dalam 5 tahun",
-                "D. B dan C tidak relevan"
-            ],
-            correct: 3,
-            explanation: "Working capital tidak ditentukan oleh aktiva atau investasi 5 tahun (kunci: 2 & 3 tidak relevan)"
-        }, {
-            id: 31,
-            question: "Tipe bantuan subsidi inti bagi pendanaan proyek-proyek publik digunakan untuk membiayai...",
-            options: [
-                "A. Biaya operasional",
-                "B. Pemanfaatan kegiatan yang terdeskripsi dengan baik",
-                "C. Studi kelayakan proyek",
-                "D. Analisa dampak proyek"
-            ],
-            correct: 1,
-            explanation: "Subsidi inti untuk kegiatan yang terdeskripsi dengan baik."
-        }, {
-            id: 32,
-            question: "Keunggulan struktur fungsional adalah...",
-            options: [
-                "A. Kurangnya jalur komunikasi horizontal",
-                "B. Semakin besar organisasi semakin rumit keputusan",
-                "C. Sulit melakukan koordinasi",
-                "D. Menangani kegiatan yang dapat diantisipasi/diklasifikasi"
-            ],
-            correct: 3,
-            explanation: "Struktur fungsional baik untuk kegiatan yang dapat diklasifikasi."
-        }, {
-            id: 33,
-            question: "Kebijakan untuk pengendalian kualitas ditentukan oleh...",
-            options: [
-                "A. efektivitas",
-                "B. kebijakan organisasi",
-                "C. kebutuhan kontrak kinerja",
-                "D. B dan C benar"
-            ],
-            correct: 3,
-            explanation: "Kebijakan organisasi & kebutuhan kontrak (kunci: 2 & 3)"
-        }, {
-            id: 34,
-            question: "Dalam siklus hidup manajemen proyek, kegiatan yang dilakukan pada tahap konsep, antara lain...",
-            options: [
-                "A. Demonstrasi dan validasi",
-                "B. Menguji alternatif yang dikembangkan",
-                "C. Pengembangan alternatif pendekatan untuk memenuhi kebutuhan",
-                "D. Pembagian alternatif skala"
-            ],
-            correct: 2,
-            explanation: "Tahap konsep: pengembangan alternatif pendekatan."
-        }, {
-            id: 35,
-            question: "Penelaahan meliputi kecukupan tenaga ahli dalam melaksanakan proyek termasuk dalam evaluasi...",
-            options: [
-                "A. Organisasi",
-                "B. Manajemen",
-                "C. Teknis",
-                "D. Pemasaran"
-            ],
-            correct: 0,
-            explanation: "Kecukupan tenaga ahli termasuk evaluasi organisasi."
-        }, {
-            id: 36,
-            question: "Kategori yang bukan menjadi biaya kualitas adalah...",
-            options: [
-                "A. Pencegahan",
-                "B. Appraisal",
-                "C. Failure",
-                "D. Manfaat"
-            ],
-            correct: 3,
-            explanation: "Manfaat bukan biaya kualitas."
-        }, {
-            id: 37,
-            question: "Pengaruh lingkungan eksternal terhadap pengambilan keputusan dalam manajemen proyek adalah...",
-            options: [
-                "A. ketersediaan bahan baku",
-                "B. globalisasi",
-                "C. kebutuhan inovasi dan fleksibilitas",
-                "D. B dan C benar"
-            ],
-            correct: 3,
-            explanation: "Globalisasi & kebutuhan inovasi (kunci: 2 & 3)"
-        }, {
-            id: 38,
-            question: "Dalam pengendalian dan evaluasi proyek, kegiatan membandingkan standar kerja dengan data kinerja di lapangan adalah untuk...",
-            options: [
-                "A. Menghitung penyimpangan keuangan",
-                "B. Menghitung capaian kinerja individu",
-                "C. Mengetahui efektivitas pencapaian sasaran",
-                "D. Merevisi kontrak kerja"
-            ],
-            correct: 2,
-            explanation: "Membandingkan untuk mengetahui efektivitas pencapaian sasaran."
-        }, {
-            id: 39,
-            question: "Kajian mengenai dampak besar dan penting suatu usaha atau kegiatan yang direncanakan pada lingkungan hidup yang diperlukan bagi proses pengambilan keputusan disebut...",
-            options: [
-                "A. Analisis dampak lingkungan",
-                "B. Uji dampak lingkungan",
-                "C. Kajian dampak lingkungan",
-                "D. Studi dampak lingkungan"
-            ],
-            correct: 3,
-            explanation: "Studi dampak lingkungan (AMDAL)."
-        }, {
-            id: 40,
-            question: "Aktivitas yang bukan konsep manajemen proyek adalah...",
-            options: [
-                "A. Menggunakan prinsip manajemen dengan dukungan SDM",
-                "B. Mencapai tujuan jangka panjang yang telah digariskan",
-                "C. Menggunakan pendekatan sistem",
-                "D. Memiliki arus kegiatan secara vertikal dan horizontal"
-            ],
-            correct: 1,
-            explanation: "Tujuan jangka panjang lebih ke manajemen strategis, bukan proyek."
-        }, {
-            id: 41,
-            question: "Yang dimaksud dengan manajemen adalah...",
-            options: [
-                "A. Tatanan dan proses dalam organisasi",
-                "B. Kegiatan oleh dua orang atau lebih dengan prinsip manajemen",
-                "C. Struktur hubungan wewenang formal",
-                "D. Kegiatan memberi bantuan dalam mengelola informasi"
-            ],
-            correct: 1,
-            explanation: "Manajemen adalah kegiatan bersama dengan prinsip manajemen (kunci: B)"
-        }, {
-            id: 42,
-            question: "Eksternalitas dapat terjadi dari interaksi sebagai berikut...",
-            options: [
-                "A. dampak produsen terhadap produsen lain",
-                "B. efek samping produsen terhadap konsumen",
-                "C. dampak konsumen terhadap konsumen lain",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua interaksi tersebut menghasilkan eksternalitas (kunci: 1,2,3)"
-        }, {
-            id: 43,
-            question: "Proyek berbeda dengan kegiatan operasional. Salah satu ciri pekerjaan proyek adalah...",
-            options: [
-                "A. Proyek memperoleh dana rutin dari APBN",
-                "B. Proyek hanya berlangsung sementara, setelah selesai manajemennya bubar",
-                "C. Manajemen proyek menjadi bagian tidak terpisahkan dengan departemen",
-                "D. Segala sumber daya dipenuhi pemberi proyek"
-            ],
-            correct: 1,
-            explanation: "Proyek bersifat sementara dan manajemennya bubar setelah selesai."
-        }, {
-            id: 44,
-            question: "Dasar untuk melakukan kegiatan pengawasan adalah kegiatan...",
-            options: [
-                "A. Koordinasi yang akan dilakukan",
-                "B. Pengorganisasian yang telah dilakukan",
-                "C. Pengarahan yang akan dilakukan",
-                "D. Perencanaan yang telah disusun"
-            ],
-            correct: 3,
-            explanation: "Pengawasan didasarkan pada perencanaan yang telah disusun."
-        }, {
-            id: 45,
-            question: "Pemerintah provinsi menjadi pihak yang berwenang untuk melakukan pengawasan ketat pelaksanaan proyek setelah...",
-            options: [
-                "A. Diterbitkannya izin proyek dan AMDAL telah dilakukan",
-                "B. Diajukan izin pelaksanaan proyek",
-                "C. Rencana AMDAL diajukan",
-                "D. Melakukan penapisan staf proyek"
-            ],
-            correct: 0,
-            explanation: "Setelah izin proyek dan AMDAL disetujui (kunci: A)"
-        }, {
-            id: 46,
-            question: "Perbandingan antara nilai sekarang dari aliran kas masuk di masa yang akan datang dengan nilai investasi disebut...",
-            options: [
-                "A. Internal rate of return",
-                "B. Average rate of return",
-                "C. Net present value",
-                "D. Profitability index"
-            ],
-            correct: 2,
-            explanation: "Net Present Value (NPV) adalah perbandingan nilai sekarang kas masuk dengan investasi."
-        }, {
-            id: 47,
-            question: "Faktor produksi yang tidak digunakan dalam melakukan evaluasi proyek adalah...",
-            options: [
-                "A. Waktu proyek",
-                "B. Keperluan energi",
-                "C. Aplikasi teknologi",
-                "D. Pasar potensial"
-            ],
-            correct: 0,
-            explanation: "Waktu proyek bukan faktor produksi utama dalam evaluasi."
-        }, {
-            id: 48,
-            question: "Dari segi perencanaan kualitas proyek, kegiatan yang perlu dilakukan oleh pemrakarsa dan pimpinan proyek untuk mencapai tujuan adalah...",
-            options: [
-                "A. Membuat rencana perbaikan kualitas, strategi dan rumusan",
-                "B. Membentuk tim kerja lintas fungsional",
-                "C. Membentuk tim kerja kualitas mandiri",
-                "D. Mencegah kecacatan dan pendeteksian masalah"
-            ],
-            correct: 3,
-            explanation: "Mencegah defect dan mendeteksi masalah (kunci: D)"
-        }, {
-            id: 49,
-            question: "Tolak ukur mutu yang menitikberatkan bahwa produk atau jasa yang dihasilkan harus sesuai dengan standar desain adalah mutu...",
-            options: [
-                "A. Kesesuaian",
-                "B. Penggunaan",
-                "C. Desain",
-                "D. Bahan"
-            ],
-            correct: 0,
-            explanation: "Kesesuaian (conformance) terhadap standar desain."
-        }, {
-            id: 50,
-            question: "Aspek yang tidak dinilai dalam studi kelayakan adalah...",
-            options: [
-                "A. Hukum",
-                "B. Sosial ekonomi dan budaya",
-                "C. Teknis dan teknologi",
-                "D. Lingkungan"
-            ],
-            correct: 3,
-            explanation: "Lingkungan sebenarnya dinilai, tetapi dalam konteks ini dianggap tidak dinilai (kunci: D)"
-        }, {
-            id: 51,
-            question: "Yang dimaksud dengan penjaminan mutu adalah...",
-            options: [
-                "A. Aktivitas sistematis dan terencana dengan sistem kualitas untuk memastikan barang/jasa sesuai standar",
-                "B. Aktivitas perencanaan proyek dengan metode tertentu",
-                "C. Aktivitas pelaksanaan proyek dengan metode tertentu",
-                "D. Aktivitas perumusan proyek dengan metode tertentu"
-            ],
-            correct: 0,
-            explanation: "Definisi penjaminan mutu (kunci: A)"
-        }, {
-            id: 52,
-            question: "Dalam Network diagram hal penting yang harus diperhatikan adalah jalur kritis. Untuk menjaga efisiensi akibat adanya jalur kritis perusahaan dapat melakukan...",
-            options: [
-                "A. Menghilangkan jalur kritis dengan menambah pekerjaan pada jalur lain",
-                "B. Merevisi kontrak dengan merevisi alur pekerjaan",
-                "C. Tenaga kerja yang menganggur akibat jalur kritis diminta mengerjakan pekerjaan lain",
-                "D. Proyek berjalan seperti biasa"
-            ],
-            correct: 2,
-            explanation: "Memindahkan tenaga kerja untuk memanfaatkan waktu (crashing)."
-        }, {
-            id: 53,
-            question: "Jika organisasi proyek penghasil mesin-mesin struktur organisasi berdasarkan orientasi produk, maka struktur organisasi yang dimaksud adalah...",
-            options: [
-                "A. Fungsional",
-                "B. Matrik",
-                "C. Produk dan area",
-                "D. Proyek murni"
-            ],
-            correct: 2,
-            explanation: "Struktur produk dan area berdasarkan orientasi produk."
-        }, {
-            id: 54,
-            question: "Faktor kontingensi dalam perencanaan proyek adalah...",
-            options: [
-                "A. modal",
-                "B. tingkat manajemen dalam organisasi",
-                "C. ketidakpastian lingkungan",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua faktor kontingensi (kunci: 1,2,3)"
-        }, {
-            id: 55,
-            question: "Cara-cara dalam melakukan tindakan koreksi adalah dengan melakukan...",
-            options: [
-                "A. perencanaan kembali",
-                "B. pemrograman kembali",
-                "C. alokasi sumber daya kembali",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua cara tindakan koreksi (kunci: 1,2,3)"
-        }, {
-            id: 56,
-            question: "Jenis evaluasi proyek yang dilakukan sebelum proyek berjalan guna menyeleksi proyek yang sesuai dengan tujuan organisasi dikenal dengan istilah...",
-            options: [
-                "A. Pre-Project Evolution",
-                "B. On-going Project Evolution",
-                "C. Completion Project evaluation",
-                "D. Post-Project Evolution"
-            ],
-            correct: 0,
-            explanation: "Pre-Project Evaluation dilakukan sebelum proyek berjalan."
-        }, {
-            id: 57,
-            question: "Contoh peramalan kuantitatif antara lain...",
-            options: [
-                "A. Analisis rangkaian waktu",
-                "B. Evaluasi pengguna",
-                "C. Komposisi hasil proyek",
-                "D. Opini pakar"
-            ],
-            correct: 0,
-            explanation: "Analisis rangkaian waktu adalah peramalan kuantitatif."
-        }, {
-            id: 58,
-            question: "Waktu mulai dini (early stage) dari pekerjaan C ke E adalah pada hari... (lihat gambar)",
-            options: [
-                "A. 15 hari",
-                "B. 25 hari",
-                "C. 40 hari",
-                "D. 50 hari"
-            ],
-            correct: 1,
-            explanation: "Berdasarkan diagram, early start C→E = 25 hari."
-        }, {
-            id: 59,
-            question: "Bentuk penjadwalan proyek yang berisi urutan-urutan pekerjaan beserta waktu disusun baris demi baris dari atas ke bawah adalah bentuk...",
-            options: [
-                "A. Bagan",
-                "B. Diagram",
-                "C. Jaringan",
-                "D. Tabel"
-            ],
-            correct: 0,
-            explanation: "Bagan (bar chart) disusun baris demi baris."
-        }, {
-            id: 60,
-            question: "Anggota tim proyek yang terlibat dalam penyiapan proposal, negosiasi kontrak, mengintegrasikan keperluan kontrak dengan rencana proyek yaitu...",
-            options: [
-                "A. Project accountant",
-                "B. Kontraktor administrator",
-                "C. Customer liaison",
-                "D. Production coordinator"
-            ],
-            correct: 1,
-            explanation: "Kontraktor administrator (kunci: B)"
-        }, {
-            id: 61,
-            question: "Langkah-langkah dalam siklus pengendalian proyek adalah...",
-            options: [
-                "A. peramalan masa depan",
-                "B. mengukur pelaksanaan dengan standar kinerja",
-                "C. pengamatan kinerja",
-                "D. B dan C benar"
-            ],
-            correct: 3,
-            explanation: "Mengukur & pengamatan kinerja (kunci: 2 & 3)"
-        }, {
-            id: 62,
-            question: "Jenis-jenis komponen biaya dalam cost and benefit analisis...",
-            options: [
-                "A. start down cost",
-                "B. procurement cost",
-                "C. project related cost",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua komponen biaya (kunci: 1,2,3)"
-        }, {
-            id: 63,
-            question: "Tim inti proyek adalah...",
-            options: [
-                "A. Para pemegang saham",
-                "B. Tim di kantor pusat yang menangani perencanaan, jadwal, anggaran",
-                "C. Tim pelaksana konstruksi",
-                "D. Para ahli pengawas"
-            ],
-            correct: 1,
-            explanation: "Tim inti di kantor pusat (perencanaan, jadwal, anggaran)."
-        }, {
-            id: 64,
-            question: "Tipe bantuan dalam proyek adalah...",
-            options: [
-                "A. subsidi inti",
-                "B. subsidi proyek",
-                "C. tender",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua tipe bantuan (kunci: 1,2,3)"
-        }, {
-            id: 65,
-            question: "Dengan memperhatikan perencanaan kerja di bawah jika anda diminta untuk mengoptimalkan waktu menyelesaikan pekerjaan maka jalur yang paling efektif untuk Anda percepat adalah jalur... (lihat gambar)",
-            options: [
-                "A. A ke B",
-                "B. C ke F",
-                "C. D ke E",
-                "D. G ke H"
-            ],
-            correct: 1,
-            explanation: "Jalur kritis C→F perlu dipercepat."
-        }, {
-            id: 66,
-            question: "Sertifikasi ISO 9001:2000 umumnya hanya berlaku selama...",
-            options: [
-                "A. 4 tahun",
-                "B. 3 tahun",
-                "C. 2 tahun",
-                "D. 1 tahun"
-            ],
-            correct: 1,
-            explanation: "ISO 9001 berlaku 3 tahun."
-        }, {
-            id: 67,
-            question: "Salah satu tujuan melakukan spesifik evaluasi proyek adalah untuk...",
-            options: [
-                "A. Mencari kesalahan manajer proyek",
-                "B. Menunjukkan kepada pemerintah kualitas proyek",
-                "C. Mencegah kerugian atau pemborosan sumber daya lebih lanjut",
-                "D. Menarik investasi dari luar negeri"
-            ],
-            correct: 2,
-            explanation: "Mencegah kerugian/pemborosan (kunci: C)"
-        }, {
-            id: 68,
-            question: "Manfaat studi kelayakan bagi pemerintah adalah...",
-            options: [
-                "A. Memperhatikan prospek usaha keuntungan",
-                "B. Memperhatikan keamanan dana yang dipinjamkan",
-                "C. Memperhatikan manfaat proyek bagi perekonomian nasional",
-                "D. Memperhatikan risiko investasi"
-            ],
-            correct: 2,
-            explanation: "Manfaat bagi perekonomian nasional (kunci: C)"
-        }, {
-            id: 69,
-            question: "Peran pemimpin tim proyek menurut Robbins dan Coulter adalah...",
-            options: [
-                "A. pendiri organisasi",
-                "B. penghubung dengan pihak luar",
-                "C. pengelola konflik",
-                "D. B dan C benar"
-            ],
-            correct: 3,
-            explanation: "Penghubung & pengelola konflik (kunci: 2 & 3)"
-        }, {
-            id: 70,
-            question: "Jika ingin diterapkan pada industri manufaktur, manfaat penjamin manajemen mutu bagi pemilikan proyek kreator pencuci limbah dengan teknik bioremediasi adalah...",
-            options: [
-                "A. Menyediakan dokumen bagi pihak pemerintah",
-                "B. Mengikuti prosedur dan spesifikasi dengan tepat sehingga mencegah rework",
-                "C. Menjaga dan meyakinkan metode, material, peralatan sesuai standar",
-                "D. Menjadi umpan balik desain engineering"
-            ],
-            correct: 1,
-            explanation: "Mengikuti prosedur untuk mencegah pekerjaan ulang (kunci: B)"
-        }, {
-            id: 71,
-            question: "Berikut merupakan ciri yang membedakan user-Based approach dengan konsep pendekatan kualitas lainnya...",
-            options: [
-                "A. kualitas tergantung pada orang yang memandangnya",
-                "B. kualitas merupakan karakteristik yang dapat diukur",
-                "C. produk yang paling memuaskan referensi seseorang",
-                "D. A dan C benar"
-            ],
-            correct: 0,
-            explanation: "User-based: kualitas tergantung pada orang yang memandang (kunci: 1)"
-        }, {
-            id: 72,
-            question: "Ciri pimpinan proyek dengan gaya laissez-faire adalah...",
-            options: [
-                "A. memberikan kebebasan kepada kelompok kerja",
-                "B. kelompok kerja dibebaskan membuat keputusan",
-                "C. memiliki kewenangan terpusat",
-                "D. A dan B benar"
-            ],
-            correct: 3,
-            explanation: "Laissez-faire: kebebasan & dibebaskan mengambil keputusan (kunci: 1 & 2)"
-        }, {
-            id: 73,
-            question: "Kegagalan suatu proyek disebabkan oleh beberapa faktor diantaranya...",
-            options: [
-                "A. kesalahan perencanaan",
-                "B. keterlambatan membayar pajak",
-                "C. kesalahan menaksir pasar",
-                "D. A dan C benar"
-            ],
-            correct: 3,
-            explanation: "Kesalahan perencanaan & taksiran pasar (kunci: 1 & 3)"
-        }, {
-            id: 74,
-            question: "Elemen dalam rantai komando adalah...",
-            options: [
-                "A. wewenang",
-                "B. tanggung jawab",
-                "C. departementalisasi",
-                "D. A dan B benar"
-            ],
-            correct: 3,
-            explanation: "Wewenang & tanggung jawab (kunci: 1 & 2)"
-        }, {
-            id: 75,
-            question: "Salah satu jenis aktiva tak berwujud (intangible assets) dalam investasi proyek adalah...",
-            options: [
-                "A. Biaya perekrutan",
-                "B. Tanah bangunan",
-                "C. Working capital",
-                "D. Pabrik"
-            ],
-            correct: 0,
-            explanation: "Biaya perekrutan adalah intangible asset."
-        }, {
-            id: 76,
-            question: "Tipe bantuan bagi pendanaan proyek yang dibatasi dalam waktu tertentu dan hanya diperuntukkan bagi pemanfaatan kegiatan yang terdeskripsi dengan baik merupakan tipe bantuan...",
-            options: [
-                "A. Dana fleksibel",
-                "B. Subsidi inti",
-                "C. Subsidi proyek",
-                "D. Tender"
-            ],
-            correct: 2,
-            explanation: "Subsidi proyek (kunci: C)"
-        }, {
-            id: 77,
-            question: "Jika organisasi proyek reboisasi hutan merancang struktur di mana pimpinan proyek berfungsi seperti manajer lini dan tenaga pelaksana dipindahkan ke proyek, maka bentuk organisasinya adalah...",
-            options: [
-                "A. Fungsional",
-                "B. Matrik",
-                "C. Produk dan area",
-                "D. Proyek murni"
-            ],
-            correct: 3,
-            explanation: "Proyek murni (kunci: D)"
-        }, {
-            id: 78,
-            question: "Organisasi yang memiliki jangkauan luas dan ingin memfokuskan pada produk barang atau jasa tertentu serta memberikan otonomi kepada setiap fokus produksi, model organisasi yang cocok adalah...",
-            options: [
-                "A. Fungsional",
-                "B. Matriks",
-                "C. Produk dan area",
-                "D. Jaringan/hybrid"
-            ],
-            correct: 2,
-            explanation: "Struktur produk dan area (kunci: C)"
-        }, {
-            id: 79,
-            question: "Salah satu ukuran kompleksitas proyek adalah...",
-            options: [
-                "A. Aspek politik pengadaan",
-                "B. Jumlah ancaman kegiatan dalam proyek",
-                "C. Kepemimpinan proyek",
-                "D. Teknologi bahan dan alat"
-            ],
-            correct: 1,
-            explanation: "Jumlah ancaman kegiatan (kunci: B)"
-        }, {
-            id: 80,
-            question: "Penelaahan meliputi kelayakan proyek secara teknis dan engineering termasuk dalam evaluasi...",
-            options: [
-                "A. Organisasi",
-                "B. Manajemen",
-                "C. Teknis",
-                "D. Pemasaran"
-            ],
-            correct: 2,
-            explanation: "Evaluasi teknis (kunci: C)"
-        }, {
-            id: 81,
-            question: "Maksud pengendalian biaya yang bukan untuk memastikan penggunaan dana adalah...",
-            options: [
-                "A. Biaya dialokasikan dengan tepat",
-                "B. Pembayaran kontraktor",
-                "C. Sumber-sumber dana bantuan disetujui",
-                "D. Biaya diamankan untuk pelaksanaan kegiatan"
-            ],
-            correct: 1,
-            explanation: "Pembayaran kontraktor bukan inti pengendalian biaya (kunci: B)"
-        }, {
-            id: 82,
-            question: "Prinsip-prinsip manajemen proyek adalah sebagai berikut...",
-            options: [
-                "A. menggambarkan fokus suatu proyek",
-                "B. penghargaan terhadap kegiatan produksi",
-                "C. mengikuti perubahan teknologi",
-                "D. A dan C benar"
-            ],
-            correct: 3,
-            explanation: "Fokus proyek & mengikuti perubahan teknologi (kunci: 1 & 3)"
-        }, {
-            id: 83,
-            question: "Salah satu perangkat pengelolaan lingkungan ISO 14000 adalah...",
-            options: [
-                "A. Sistem manajemen terpadu",
-                "B. Pengelolaan di wilayah hutan lindung",
-                "C. Audit internal",
-                "D. Evaluasi kinerja lingkungan"
-            ],
-            correct: 3,
-            explanation: "Evaluasi kinerja lingkungan (kunci: D)"
-        }, {
-            id: 84,
-            question: "Pihak yang terlibat dalam proses AMDAL adalah...",
-            options: [
-                "A. komisi penilai AMDAL",
-                "B. pemrakarsa",
-                "C. masyarakat yang berkepentingan",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua pihak terlibat (kunci: 1,2,3)"
-        }, {
-            id: 85,
-            question: "Menurut filosofi manajemen proyek, perencanaan dan pengendalian merupakan teknik utama untuk mencapai tujuan dengan melengkapi tugas-tugas yang terpisah. Teknik tersebut dilaksanakan melalui...",
-            options: [
-                "A. Jaringan kerja",
-                "B. Kesepakatan informal",
-                "C. Organisasi padat modal",
-                "D. Organisasi informal"
-            ],
-            correct: 0,
-            explanation: "Jaringan kerja (network) (kunci: A)"
-        }, {
-            id: 86,
-            question: "Alasan yang mendasari mengapa manajemen sangat penting adalah...",
-            options: [
-                "A. Manajemen dasar dari budaya organisasi",
-                "B. Manajemen merupakan alat untuk mencapai tujuan",
-                "C. Manajemen menentukan tujuan yang ingin dicapai",
-                "D. Manajemen merupakan bagian dari kepemimpinan"
-            ],
-            correct: 1,
-            explanation: "Manajemen adalah alat untuk mencapai tujuan (kunci: B)"
-        }, {
-            id: 87,
-            question: "Eksternalitas dapat terjadi dari interaksi sebagai berikut...",
-            options: [
-                "A. dampak produsen terhadap produsen lain",
-                "B. efek samping produsen terhadap konsumen",
-                "C. dampak konsumen terhadap konsumen lain",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua interaksi (kunci: 1,2,3)"
-        }, {
-            id: 88,
-            question: "Rangkaian kegiatan yang bersifat khusus untuk mencapai hasil yang bersifat khusus disebut...",
-            options: [
-                "A. Program",
-                "B. Pembangunan",
-                "C. Proyek",
-                "D. Perencanaan"
-            ],
-            correct: 2,
-            explanation: "Proyek (kunci: C)"
-        }, {
-            id: 89,
-            question: "Wewenang manajemen puncak adalah...",
-            options: [
-                "A. bertanggung jawab atas keseluruhan aktivitas organisasi",
-                "B. memonitor pekerjaan manajemen tingkat bawah",
-                "C. menetapkan tujuan yang berdampak luas pada organisasi",
-                "D. A dan C benar"
-            ],
-            correct: 3,
-            explanation: "Tanggung jawab keseluruhan & menetapkan tujuan luas (kunci: 1 & 3)"
-        }, {
-            id: 90,
-            question: "Suatu kegiatan proyek dapat diizinkan atau dilakukan, jika telah memperoleh persetujuan kajian AMDAL yang disetujui oleh pihak...",
-            options: [
-                "A. Kementerian lingkungan hidup",
-                "B. Konsultan lingkungan",
-                "C. Masyarakat",
-                "D. Peneliti akademik"
-            ],
-            correct: 0,
-            explanation: "Kementerian Lingkungan Hidup (kunci: A)"
-        }, {
-            id: 91,
-            question: "Dalam metode pemilihan proyek, kriteria perbandingan antara nilai sekarang dari aliran kas masuk masa yang akan datang dengan nilai investasi, merupakan...",
-            options: [
-                "A. Internal rate of return",
-                "B. Average rate of return",
-                "C. Profitability index",
-                "D. Net present value"
-            ],
-            correct: 2,
-            explanation: "Profitability Index (kunci: C)"
-        }, {
-            id: 92,
-            question: "Pada tahap studi kelayakan, tindakan yang perlu Anda lakukan adalah...",
-            options: [
-                "A. Menyusun perencanaan proyek",
-                "B. Mengumpulkan dan menganalisis data",
-                "C. Melakukan presentasi proyek",
-                "D. Menilai kelayakan proposal"
-            ],
-            correct: 1,
-            explanation: "Mengumpulkan dan menganalisis data (kunci: B)"
-        }, {
-            id: 93,
-            question: "Upaya yang dapat dilakukan dalam menjamin kualitas proyek adalah...",
-            options: [
-                "A. dari sisi perencanaan, membuat rencana perbaikan kualitas",
-                "B. dari sisi anggaran, membuat penghematan",
-                "C. dari sisi pengorganisasian, menggunakan teknik penggerakan kualitas",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua upaya (kunci: 1,2,3)"
-        }, {
-            id: 94,
-            question: "Salah satu parameter mutu adalah...",
-            options: [
-                "A. Mutu desain",
-                "B. Mutu produksi",
-                "C. Mutu kepemimpinan",
-                "D. Mutu sosio-politis"
-            ],
-            correct: 0,
-            explanation: "Mutu desain (kunci: A)"
-        }, {
-            id: 95,
-            question: "Studi kelayakan hasilnya digunakan untuk mengambil keputusan apakah suatu proyek atau bisnis dapat dikerjakan atau ditunda atau tidak dijalankan sama sekali adalah aspek...",
-            options: [
-                "A. Sosial budaya",
-                "B. Ideologi",
-                "C. Keamanan",
-                "D. Politik"
-            ],
-            correct: 3,
-            explanation: "Aspek politik (kunci: D)"
-        }, {
-            id: 96,
-            question: "Penjaminan kualitas didasari oleh pemikiran bahwa dengan penjaminan kualitas organisasi akan dapat mengerjakan segala sesuatu dengan baik sejak...",
-            options: [
-                "A. Awal dan setiap waktu (do it right the first time and every time)",
-                "B. Akhir pelaksanaan kerja",
-                "C. Jalur kritis diketahui",
-                "D. Saat puncak pelaksanaan"
-            ],
-            correct: 0,
-            explanation: "Do it right the first time (kunci: A)"
-        }, {
-            id: 97,
-            question: "Menurut Juran, salah satu dimensi kualitas yang mencakup aspek dapat dipercaya, ketahanan, serta kemudahan akses bagi konsumen, adalah dimensi...",
-            options: [
-                "A. Rancangan (design)",
-                "B. Kesesuaian (conformance)",
-                "C. Ketersediaan (availability)",
-                "D. Keamanan (safety)"
-            ],
-            correct: 2,
-            explanation: "Ketersediaan (availability) (kunci: C)"
-        }, {
-            id: 98,
-            question: "Ciri dari organisasi produk dan area adalah...",
-            options: [
-                "A. perusahaan memiliki beragam jenis produk",
-                "B. pembagian kerja berorientasi pada produk dan bersifat otonomi",
-                "C. pembagian kerja berdasarkan fungsi-fungsi manajemen",
-                "D. A dan B benar"
-            ],
-            correct: 3,
-            explanation: "Beragam produk & orientasi produk (kunci: 1 & 2)"
-        }, {
-            id: 99,
-            question: "Pernyataan yang menjelaskan hubungan antara perencanaan proyek dengan kinerja proyek adalah...",
-            options: [
-                "A. perencanaan tidak selalu berpengaruh pada kinerja",
-                "B. perencanaan yang baik akan menghasilkan profit yang lebih besar",
-                "C. perencanaan yang baik akan menghasilkan kinerja yang baik pula",
-                "D. semua benar"
-            ],
-            correct: 2,
-            explanation: "Perencanaan baik → kinerja baik (kunci: 3)"
-        }, {
-            id: 100,
-            question: "Cara membandingkan rencana dengan kinerja proyek dengan mengetahui...",
-            options: [
-                "A. proses proyek berjalan",
-                "B. penyebab penyimpangan",
-                "C. alokasi sumber daya",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua cara (kunci: 1,2,3)"
-        }, {
-            id: 101,
-            question: "Perusahaan melakukan kegiatan mengumpulkan data tentang proyek-proyek yang dapat dikerjakan, kemudian menganalisis kelayakannya. Kegiatan tersebut merupakan bentuk evaluasi...",
-            options: [
-                "A. Pra proyek",
-                "B. Proyek yang sedang berjalan",
-                "C. Penyelesaian proyek",
-                "D. Purna proyek"
-            ],
-            correct: 0,
-            explanation: "Evaluasi pra proyek (kunci: A)"
-        }, {
-            id: 102,
-            question: "Teknik peramalan proyek dengan memprediksi satu variabel berdasarkan variabel lain yang diketahui atau yang diasumsikan disebut...",
-            options: [
-                "A. Analisis rangkaian waktu",
-                "B. Komposisi hasil proyek",
-                "C. Model regresi",
-                "D. Model ekonometrik"
-            ],
-            correct: 2,
-            explanation: "Model regresi (kunci: C)"
-        }, {
-            id: 103,
-            question: "Dalam diagram kerja, selisih waktu antara waktu mulai lambat dengan waktu mulai dini dari masing-masing pekerjaan merupakan...",
-            options: [
-                "A. Kelonggaran waktu",
-                "B. Kontrol waktu pekerjaan",
-                "C. Waktu penyelesaian pekerjaan",
-                "D. Waktu penyelesaian tercepat"
-            ],
-            correct: 0,
-            explanation: "Kelonggaran waktu (slack) (kunci: A)"
-        }, {
-            id: 104,
-            question: "Salah satu pertimbangan penting dalam pemilihan proyek adalah dengan mengukur kesesuaian proyek dengan nilai-nilai organisasi, ini bermakna...",
-            options: [
-                "A. Proyek harus memberikan keuntungan besar",
-                "B. Proyek harus memiliki jangka pembayaran pendek",
-                "C. Proyek harus sesuai dengan sasaran organisasi jangka panjang",
-                "D. Proyek harus sesuai dengan keinginan pemangku kepentingan"
-            ],
-            correct: 2,
-            explanation: "Sesuai sasaran organisasi jangka panjang (kunci: C)"
-        }, {
-            id: 105,
-            question: "Jika dalam organisasi pengelola proyek pembangkit tenaga surya membuat tim proyek, maka susunan personel yang tergabung dalam tim proyek tersebut terdiri dari personel...",
-            options: [
-                "A. Fungsional dari organisasi induk dan konsultan eksternal",
-                "B. Fungsional dari organisasi induk dan personel inti tim",
-                "C. Inti tim dan konsultan eksternal",
-                "D. Inti tim dan wakil pemerintah setempat"
-            ],
-            correct: 1,
-            explanation: "Fungsional + personel inti (kunci: B)"
-        }, {
-            id: 106,
-            question: "Ketika manajer proyek melakukan kegiatan spesialisasi pekerjaan, hasil yang diperoleh adalah satu set jenis pekerjaan yang harus dilaksanakan. Namun manajer proyek perlu mengembangkan strategi agar seluruh kegiatan dapat dikelola dengan baik dengan cara menghitung kemampuan manajer dalam mengelola pekerjaan dan orang. Manajer tersebut sedang melaksanakan asas...",
-            options: [
-                "A. Koordinasi",
-                "B. Spesialisasi pekerjaan",
-                "C. Kepemimpinan",
-                "D. Rentang kendali"
-            ],
-            correct: 3,
-            explanation: "Rentang kendali (kunci: D)"
-        }, {
-            id: 107,
-            question: "Semua biaya terkait dengan pengembangan sistem termasuk biaya penerapannya merupakan definisi dari...",
-            options: [
-                "A. Procurement cost",
-                "B. Start up cost",
-                "C. Project related cost",
-                "D. On going cost"
-            ],
-            correct: 1,
-            explanation: "Start up cost (kunci: B)"
-        }, {
-            id: 108,
-            question: "Tim inti dari sebuah proyek adalah...",
-            options: [
-                "A. Para pemegang saham",
-                "B. Tim di kantor pusat yang menangani perencanaan, jadwal, anggaran",
-                "C. Tim pelaksana konstruksi",
-                "D. Para ahli pengawas"
-            ],
-            correct: 1,
-            explanation: "Tim inti di kantor pusat (kunci: B)"
-        }, {
-            id: 109,
-            question: "Jika pemerintah RI ingin mendapatkan donatur proyek internasional untuk membiayai proyek pembangkit tenaga listrik di suatu provinsi, maka sebelum menyusun proposal, perlu memperhitungkan...",
-            options: [
-                "A. Hubungan politik dengan negara asal",
-                "B. Kriteria donatur tentang isu atau tema yang diusung",
-                "C. Kebutuhan tenaga ahli asing",
-                "D. Teknologi dari negara donatur"
-            ],
-            correct: 1,
-            explanation: "Kriteria donatur (kunci: B)"
-        }, {
-            id: 110,
-            question: "Karakteristik umum dari sistem manajemen kualitas adalah...",
-            options: [
-                "A. mencakup aktivitas dalam organisasi modern",
-                "B. berfokus pada konsistensi dari proses kerja",
-                "C. pencegahan kesalahan bersifat proaktif",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua karakteristik (kunci: 1,2,3)"
-        }, {
-            id: 111,
-            question: "Manfaat dari sistem manajemen kualitas adalah...",
-            options: [
-                "A. Memperoleh komitmen dari pelanggan",
-                "B. Meningkatkan kepercayaan dan kepuasan pelanggan",
-                "C. Meningkatkan image perusahaan serta daya saing",
-                "D. Meningkatkan kualitas dan produktivitas kerja"
-            ],
-            correct: 1,
-            explanation: "Meningkatkan kepercayaan & kepuasan pelanggan (kunci: B, meski C juga disebut, pilih B)"
-        }, {
-            id: 112,
-            question: "Mana dari pernyataan berikut yang paling benar?",
-            options: [
-                "A. Dalam memimpin proyek, tidak diperlukan gaya kepemimpinan",
-                "B. Gaya kepemimpinan merupakan respon terhadap karakteristik lingkungan kerja dan pekerjaan",
-                "C. Gaya kepemimpinan otokratis cocok untuk memimpin proyek",
-                "D. Pemimpin harus mengendalikan dengan sangat ketat perilaku manajer dan pegawai"
-            ],
-            correct: 1,
-            explanation: "Gaya kepemimpinan merespon lingkungan kerja (kunci: B)"
-        }, {
-            id: 113,
-            question: "Manfaat studi kelayakan bagi kreditur adalah...",
-            options: [
-                "A. Memperhatikan prospek usaha keuntungan",
-                "B. Memperhatikan keamanan dana yang dipinjamkan",
-                "C. Memperhatikan manfaat proyek bagi perekonomian nasional",
-                "D. Memperhatikan risiko investasi"
-            ],
-            correct: 1,
-            explanation: "Keamanan dana yang dipinjamkan (kunci: B)"
-        }, {
-            id: 114,
-            question: "Salah satu fungsi penting manajer proyek adalah sebagai liaison yaitu fungsi manajer sebagai...",
-            options: [
-                "A. Penghubung antara organisasinya dengan pihak lain",
-                "B. Penengah jika terjadi konflik",
-                "C. Motivator dan penyemangat",
-                "D. Pemeran menyelesaikan masalah"
-            ],
-            correct: 0,
-            explanation: "Penghubung (kunci: A)"
-        }, {
-            id: 115,
-            question: "Kegunaan penjaminan mutu bagi perancang instalasi adalah...",
-            options: [
-                "A. Menyediakan data hasil inspeksi",
-                "B. Memberikan kepercayaan bahwa metode, material sesuai regulasi",
-                "C. Menjadi umpan balik pekerjaan desain engineering di masa depan",
-                "D. Mencegah pengulangan pekerjaan"
-            ],
-            correct: 2,
-            explanation: "Umpan balik desain engineering masa depan (kunci: C)"
-        }, {
-            id: 116,
-            question: "Salah satu tujuan yang ingin dicapai dari tindakan melakukan pemeliharaan mutu secara terus-menerus adalah...",
-            options: [
-                "A. Efisiensi anggaran dapat ditetapkan sejak perencanaan",
-                "B. Kerugian yang lebih besar akan dapat dikurangi",
-                "C. Tingkat kepercayaan perusahaan asuransi meningkat",
-                "D. Tingkat keakuratan penyelesaian proyek meningkat"
-            ],
-            correct: 1,
-            explanation: "Mengurangi kerugian lebih besar (kunci: B)"
-        }, {
-            id: 117,
-            question: "Ciri kualitas diri pimpinan proyek visioner adalah sebagai berikut...",
-            options: [
-                "A. kemampuan menjelaskan visi",
-                "B. kemampuan menerapkan visi ke dalam kegiatan",
-                "C. kemampuan memahami keinginan bawahan",
-                "D. A dan B benar"
-            ],
-            correct: 3,
-            explanation: "Menjelaskan & menerapkan visi (kunci: 1 & 2)"
-        }, {
-            id: 118,
-            question: "Hal yang perlu diketahui dalam studi kelayakan adalah...",
-            options: [
-                "A. ruang lingkup proyek",
-                "B. pengeluaran modal",
-                "C. sarana yang diperlukan proyek",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua hal (kunci: 1,2,3)"
-        }, {
-            id: 119,
-            question: "Penggunaan sistem standarisasi proses untuk memperoleh keluaran/output yang diharapkan pelanggan merupakan filosofi sistem jaminan kualitas dari...",
-            options: [
-                "A. Six Sigma",
-                "B. International Standard Organization (ISO)",
-                "C. Quality system",
-                "D. Malcom Baldridge"
-            ],
-            correct: 1,
-            explanation: "ISO (kunci: B)"
-        }, {
-            id: 120,
-            question: "Perusahaan perlu mengelola working capital dengan efektif dengan cara...",
-            options: [
-                "A. Mengurangi persediaan uang kas",
-                "B. Mengelola perputaran kas setiap harinya secara efektif",
-                "C. Menekan pembelian dan sewa",
-                "D. Pemangkas gaji dan belanja pegawai"
-            ],
-            correct: 1,
-            explanation: "Mengelola perputaran kas (kunci: B)"
-        }, {
-            id: 121,
-            question: "Sumber pendanaan yang bukan tipe pendanaan proyek adalah...",
-            options: [
-                "A. Sumber-sumber dana lokal",
-                "B. Korporasi",
-                "C. Dana pemerintah asing",
-                "D. Mencetak uang"
-            ],
-            correct: 3,
-            explanation: "Mencetak uang bukan sumber pendanaan proyek (kunci: D)"
-        }, {
-            id: 122,
-            question: "Jika organisasi proyek reboisasi hutan merancang struktur yang anggotanya mengerjakan pekerjaan sejenis dikelompokkan ke dalam satu unit bidang struktur piramida, hirarki vertikal, maka bentuk organisasinya adalah...",
-            options: [
-                "A. Fungsional",
-                "B. Matriks",
-                "C. Produk dan area",
-                "D. Proyek murni"
-            ],
-            correct: 0,
-            explanation: "Struktur fungsional (kunci: A)"
-        }, {
-            id: 123,
-            question: "Unsur dari sistem pengendalian proyek adalah...",
-            options: [
-                "A. efektivitas",
-                "B. input",
-                "C. output",
-                "D. B dan C benar"
-            ],
-            correct: 3,
-            explanation: "Input & output (kunci: 2 & 3)"
-        }, {
-            id: 124,
-            question: "Komponen penting dalam proposal proyek yaitu...",
-            options: [
-                "A. Jenis proyek, manajemen, biaya, dan harga",
-                "B. Jenis proyek, manajemen, biaya, dan tempat tinggal",
-                "C. Jenis proyek, pernyataan anti korupsi, biaya, harga",
-                "D. Jenis proyek, waktu, biaya, dan harga"
-            ],
-            correct: 3,
-            explanation: "Jenis proyek, waktu, biaya, harga (kunci: D)"
-        }, {
-            id: 125,
-            question: "Manfaat ukuran waktu bagi organisasi proyek adalah...",
-            options: [
-                "A. bekerja lebih terstruktur",
-                "B. bekerja lebih terkontrol",
-                "C. hemat tenaga",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua manfaat (kunci: 1,2,3)"
-        }, {
-            id: 126,
-            question: "Studi kelayakan proyek berbeda dengan studi kelayakan bisnis. Perbedaan tersebut adalah...",
-            options: [
-                "A. Studi kelayakan bisnis berfokus pada kelayakan kegiatan",
-                "B. Studi kelayakan proyek dilakukan dengan menilai kelayakan suatu proyek",
-                "C. Studi kelayakan bisnis menggunakan pendekatan kuantitatif ketat",
-                "D. Studi kelayakan proyek tidak memerlukan metode analisis tertentu"
-            ],
-            correct: 1,
-            explanation: "Studi kelayakan proyek = penilaian kelayakan proyek (kunci: B)"
-        }, {
-            id: 127,
-            question: "Pengaruh lingkungan eksternal terhadap pengambil keputusan dalam manajemen proyek adalah...",
-            options: [
-                "A. ketersediaan bahan baku",
-                "B. globalisasi",
-                "C. kebutuhan inovasi dan fleksibilitas",
-                "D. B dan C benar"
-            ],
-            correct: 3,
-            explanation: "Globalisasi & kebutuhan inovasi (kunci: 2 & 3)"
-        }, {
-            id: 128,
-            question: "ISO 14000 mencakup beberapa kelompok perangkat pengelolaan lingkungan yaitu...",
-            options: [
-                "A. manajemen lingkungan",
-                "B. audit lingkungan",
-                "C. evaluasi kinerja lingkungan",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua perangkat (kunci: 1,2,3)"
-        }, {
-            id: 129,
-            question: "Analisis mengenai dampak lingkungan merupakan kajian mengenai dampak besar dan penting suatu usaha dan atau kegiatan yang direncanakan pada lingkungan hidup yang diperlukan bagi proses...",
-            options: [
-                "A. Implementasi kebijakan ekonomi",
-                "B. Pengambilan keputusan tentang penyelenggaraan usaha di Indonesia",
-                "C. Perencanaan kinerja lingkungan",
-                "D. Pengendalian kinerja lingkungan"
-            ],
-            correct: 1,
-            explanation: "Pengambilan keputusan (kunci: B)"
-        }, {
-            id: 130,
-            question: "Aktivitas yang bukan konsep manajemen proyek adalah...",
-            options: [
-                "A. Menggunakan prinsip manajemen dengan dukungan SDM",
-                "B. Mencapai tujuan jangka panjang yang telah digariskan",
-                "C. Menggunakan pendekatan sistem",
-                "D. Memiliki arus kegiatan secara vertikal dan horizontal"
-            ],
-            correct: 1,
-            explanation: "Tujuan jangka panjang (kunci: B)"
-        }, {
-            id: 131,
-            question: "Inti dari kegiatan manajemen adalah kegiatan...",
-            options: [
-                "A. Koordinasi",
-                "B. Recruitment",
-                "C. Mengelola",
-                "D. Evaluasi"
-            ],
-            correct: 2,
-            explanation: "Mengelola (kunci: C)"
-        }, {
-            id: 132,
-            question: "Yang termasuk jenis eksternalitas produksi, adalah...",
-            options: [
-                "A. eksternalitas dis-ekonomi produksi",
-                "B. eksternalitas ekonomi produksi",
-                "C. eksternalitas ekonomi konsumsi",
-                "D. A dan B benar"
-            ],
-            correct: 3,
-            explanation: "Eksternalitas produksi: dis-ekonomi & ekonomi produksi (kunci: 1 & 2)"
-        }, {
-            id: 133,
-            question: "Contoh dari organisasi proyek yang inovatif, adalah...",
-            options: [
-                "A. Proyek pembangkit listrik mandiri di daerah sulit",
-                "B. Proyek padat karya daerah pegunungan",
-                "C. Proyek reklamasi pantai oleh swasta",
-                "D. Proyek perumahan mewah di luar Jawa"
-            ],
-            correct: 0,
-            explanation: "Proyek pembangkit listrik mandiri di daerah sulit (kunci: A)"
-        }, {
-            id: 134,
-            question: "Berikut ini yang merupakan prinsip-prinsip dari manajemen adalah...",
-            options: [
-                "A. perencanaan",
-                "B. pengorganisasian",
-                "C. pengarahan",
-                "D. semua benar"
-            ],
-            correct: 3,
-            explanation: "Semua prinsip manajemen (kunci: 1,2,3)"
-        }, {
-            id: 135,
-            question: "AMDAL dapat digunakan sebagai rekomendasi proyek jika sudah memperoleh persetujuan dari...",
-            options: [
-                "A. Pemilik perusahaan",
-                "B. Pemilik proyek",
-                "C. Kementerian lingkungan hidup",
-                "D. Masyarakat setempat dan LSM"
-            ],
-            correct: 2,
-            explanation: "Kementerian Lingkungan Hidup (kunci: C)"
-        }];
+        const MASTER_QUESTIONS = [
+            // ---- Soal 1 ----
+            { id: 1, question: "Beberapa keuntungan menggunakan sistem kepemimpinan model Likert adalah...", type: 'combination',
+                correctKey: '123', explanation: "Semua pernyataan benar." },
+            // ---- Soal 2 ----
+            { id: 2, question: "Beberapa perbedaan manajemen dibandingkan dengan kepemimpinan antara lain....",
+                type: 'combination', correctKey: '13', explanation: "Manajemen mengatasi kerumitan, kepemimpinan mengatasi perubahan." },
+            // ---- Soal 3 ----
+            { id: 3, question: "Pernyataan berikut ini yang berkaitan dengan pengertian hubungan manusiawi dalam arti luas diantaranya....",
+                type: 'combination', correctKey: '23',
+                explanation: "Studi tentang kerja sama kelompok dan perpaduan orang dalam situasi kerja." },
+            // ---- Soal 4 ----
+            { id: 4, question: "Lima jenjang kebutuhan Maslow tidak dapat membuat prediksi tentang perilaku manusia, hal ini dapat dijelaskan sebagai berikut....",
+                type: 'mcq', options: ["A. Kebutuhan manusia diperoleh dari budaya suatu masyarakat",
+                    "B. Seseorang memiliki kebutuhan yang beragam dan itu sangat manusiawi dan hal wajar",
+                    "C. Kebutuhan manusia sangat banyak dan beragam, dan yang sangat mendesak belum tentu terjadi secara berurutan",
+                    "D. Seseorang yang mempunyai kebutuhan yang sangat mendesak akan termotivasi untuk memenuhi kebutuhan hidup"
+                ], correct: 2, explanation: "Maslow tidak memprediksi urutan kebutuhan yang kaku." },
+            // ---- Soal 5 ----
+            { id: 5, question: "Unsur paling kuat yang dapat mempengaruhi vitalitas kerja menurut teori Persepsi dan Motivasi adalah...",
+                type: 'mcq', options: ["A. Harapan", "B. Peluang", "C. Pemenuhan", "D. Kinerja"], correct: 0,
+                explanation: "Harapan adalah unsur terkuat menurut teori persepsi." },
+            // ---- Soal 6 ----
+            { id: 6, question: "Tujuan utama prinsip-prinsip manajemen ilmiah menurut Taylor adalah...", type: 'mcq',
+                options: ["A. Menghilangkan antagonisme antara majikan dan pekerja",
+                    "B. Menggantikan unsur manusia dengan unsur mesin",
+                    "C. Meningkatkan produktivitas dunia industri",
+                    "D. Menjadikan orientasi kerja sebagai hal utama"
+                ], correct: 2, explanation: "Taylor bertujuan meningkatkan produktivitas industri." },
+            // ---- Soal 7 ----
+            { id: 7, question: "Wewenang karismatik menurut Weber didasarkan pada...", type: 'mcq', options: [
+                    "A. Wewenang yang melembaga dalam masyarakat",
+                    "B. Kelebihan yang biasanya tidak rasional",
+                    "C. Perundang-undangan yang berlaku dalam masyarakat",
+                    "D. Sifat kelompok sosial tertentu"
+                ], correct: 1, explanation: "Karisma didasarkan pada kelebihan pribadi yang irasional." },
+            // ---- Soal 8 ----
+            { id: 8, question: "Teori harapan dari Vroom mempunyai tiga asumsi yaitu...", type: 'mcq', options: [
+                    "A. Harapan hasil, valensi, dan harapan pemeliharaan",
+                    "B. Harapan hasil, valensi, dan harapan pertumbuhan",
+                    "C. Harapan hasil, valensi, dan harapan usaha",
+                    "D. Harapan hasil, valensi, dan harapan keterkaitan"
+                ], correct: 2, explanation: "Tiga asumsi Vroom: harapan hasil, valensi, harapan usaha." },
+            // ---- Soal 9 ----
+            { id: 9, question: "Gaya eksekutif sebagai gaya kepemimpinan situasional yang efektif memiliki ciri-ciri...",
+                type: 'mcq', options: ["A. Memberikan perhatian kepada usaha mencapai tujuan melalui pelaksanaan tugas dan kesamaan hubungan kerja",
+                    "B. Memberikan perhatian besar kepada hubungan dan lebih kecil perhatiannya terhadap tugas-tugas",
+                    "C. Memberikan perhatian tinggi kepada guru dan perhatian rendah kepada hubungan kerja",
+                    "D. Memberikan perhatian kecil kepada tugas-tugas dan hubungan kerja"
+                ], correct: 0, explanation: "Gaya eksekutif menyeimbangkan tugas dan hubungan." },
+            // ---- Soal 10 ----
+            { id: 10, question: "Serangkaian peran seseorang yang diharapkan berbeda oleh orang lain sehingga tidak mungkin baginya untuk memenuhi semua peran, dalam hal ini telah terjadi konflik...",
+                type: 'mcq', options: ["A. Peran", "B. Intraperan", "C. Antar peran", "D. Antar pribadi"], correct: 2,
+                explanation: "Konflik antar peran terjadi karena harapan yang bertentangan." },
+            // ---- Soal 11 ----
+            { id: 11, question: "Seorang konsultan sebagai pihak ketiga dalam penyelesaian konflik menampilkan perilaku berikut...",
+                type: 'mcq', options: ["A. Menggunakan persuasi dan penalaran kepada pihak-pihak yang berkonflik",
+                    "B. Memiliki wewenang untuk memaksakan kehendaknya agar pihak yang berkonflik melakukan persetujuan memecahkan masalah",
+                    "C. Terampil dan adil dalam menyelesaikan konflik melalui komunikasi dan analisis yang tajam",
+                    "D. Bertindak tidak hanya sekedar komunikasi informal, melakukan pencarian dan penemuan fakta, penafsiran pesan dan melakukan persuasi terhadap pihak-pihak yang berkonflik"
+                ], correct: 2, explanation: "Konsultan menyelesaikan konflik dengan keterampilan dan keadilan." },
+            // ---- Soal 12 ----
+            { id: 12, question: "Berikut ini pernyataan yang berkaitan dengan konsep kekuasaan diantaranya...",
+                type: 'combination', correctKey: '123', explanation: "Semua pernyataan benar." },
+            // ---- Soal 13 ----
+            { id: 13, question: "Dalam kepemimpinan situasional model Hersey dan Blanchard maka bawahan yang berada pada tingkat kematangan M-1 memerlukan....",
+                type: 'combination', correctKey: '23',
+                explanation: "M-1 memerlukan pengarahan tinggi dan pengerahan besar." },
+            // ---- Soal 14 ----
+            { id: 14, question: "Kekuasaan posisi dalam organisasi cenderung mengalir ke bawah maknanya adalah...",
+                type: 'mcq', options: ["A. Kekuasaan posisi diperoleh karena kedudukan seseorang dalam organisasi",
+                    "B. Kekuasaan posisi tidak otomatis dan inheren dalam organisasi",
+                    "C. Kekuasaan yang diperoleh dari pengikutnya untuk dijadikan acuan dalam menjalankan kewenangannya sesuai kesepakatan",
+                    "D. Hubungan antara atasan dan bawahan yang memperoleh kekuasaan akan sangat menentukan besar atau kecilnya kekuasaan jabatan/ posisi"
+                ], correct: 0, explanation: "Kekuasaan posisi berasal dari kedudukan formal." },
+            // ---- Soal 15 ----
+            { id: 15, question: "Etnosentrisme merupakan penghambat proses komunikasi antarbudaya yang berkaitan dengan pemaknaan suatu kata. SEBAB Budaya adalah landasan komunikasi.",
+                type: 'cause-effect', correctKey: 'A',
+                explanation: "Pernyataan dan alasan benar dan berhubungan." },
+            // ---- Soal 16 ----
+            { id: 16, question: "Terdapat banyak faktor yang menentukan status seseorang dalam kelompoknya, antara lain...",
+                type: 'combination', correctKey: '123', explanation: "Semua faktor berpengaruh." },
+            // ---- Soal 17 ----
+            { id: 17, question: "Peranan tugas sebagai salah satu peranan fungsional bagi anggota kelompok, adalah peranan yang dapat...",
+                type: 'mcq', options: ["A. Mempertahankan keutuhan kelompok",
+                    "B. Memperkuat dan mengatur kelompok",
+                    "C. Memperlancar pengaruh dalam memecahkan masalah kelompok",
+                    "D. Mengganggu kemajuan dan usaha kelompok"
+                ], correct: 2, explanation: "Peran tugas memperlancar pemecahan masalah." },
+            // ---- Soal 18 ----
+            { id: 18, question: "Persamaan ciri komunikasi organisasi pada era manajemen klasik dan Era Human relation adalah...",
+                type: 'mcq', options: ["A. Bersifat formal",
+                    "B. Komunikasi atasan dan bawahan bersifat bottom up",
+                    "C. Tidak ada komunikasi horizontal",
+                    "D. Komunikasi dilakukan semata-mata sebagai alat kontrol pimpinan terhadap bawahan"
+                ], correct: 0, explanation: "Keduanya masih bersifat formal." },
+            // ---- Soal 19 ----
+            { id: 19, question: "Berikut ini pernyataan yang benar tentang dinamika kelompok adalah...",
+                type: 'combination', correctKey: '13',
+                explanation: "Dinamika kelompok meningkatkan kerjasama dan tergantung interaksi anggota." },
+            // ---- Soal 20 ----
+            { id: 20, question: "Komunikasi verbal dapat berupa bahasa...", type: 'combination', correctKey: '12',
+                explanation: "Lisan dan tulisan adalah bentuk verbal." },
+            // ---- Soal 21 ----
+            { id: 21, question: "Efektivitas komunikasi ditentukan oleh upaya berikut...", type: 'combination',
+                correctKey: '123', explanation: "Semua upaya meningkatkan efektivitas." },
+            // ---- Soal 22 ----
+            { id: 22, question: "Salah satu tipe kelompok formal adalah kelompok komando. Kelompok ini dibentuk berdasarkan...",
+                type: 'mcq', options: ["A. Penugasan tertentu", "B. Bagan organisasi", "C. Kepentingan yang sama",
+                    "D. Kesamaan hobi anggotanya"
+                ], correct: 1, explanation: "Kelompok komando berdasarkan bagan organisasi." },
+            // ---- Soal 23 ----
+            { id: 23, question: "Karakteristik orang-orang dalam organisasi berdasarkan asumsi teori 'Y' adalah...",
+                type: 'mcq', options: ["A. Adanya campur tangan pimpinan secara intensif",
+                    "B. Pimpinan hanya bertugas membenahi kemampuan anggota organisasi",
+                    "C. Pimpinan memberi petunjuk secara detail mengenai pelaksanaan pekerjaan kantor",
+                    "D. Pimpinan mengendalikan perilaku bawahannya"
+                ], correct: 1, explanation: "Teori Y: pimpinan membenahi kemampuan anggota." },
+            // ---- Soal 24 ----
+            { id: 24, question: "Studi yang mempelajari mengenai perilaku manusia yang berhubungan dengan orang lain adalah...",
+                type: 'mcq', options: ["A. Politik", "B. Psikologi sosial", "C. Antropologi", "D. Ekonomi"], correct: 1,
+                explanation: "Psikologi sosial mempelajari perilaku dalam hubungan sosial." },
+            // ---- Soal 25 ----
+            { id: 25, question: "Pola komunikasi yang paling jarang digunakan tetapi dapat membantu efektivitas pola lainnya sekaligus mencapai efisiensi kerja, adalah pola...",
+                type: 'mcq', options: ["A. Horizontal", "B. Diagonal", "C. Lateral", "D. Vertikal"], correct: 1,
+                explanation: "Pola diagonal jarang digunakan tapi efektif." },
+            // ---- Soal 26 ----
+            { id: 26, question: "Pesan non verbal sangat penting bagi para pelaku komunikasi, berfungsi....",
+                type: 'combination', correctKey: '123', explanation: "Semua fungsi benar." },
+            // ---- Soal 27 ----
+            { id: 27, question: "Beberapa hal yang menjadi pertimbangan dalam proses pengambilan keputusan diantaranya...",
+                type: 'combination', correctKey: '123', explanation: "Semua tahapan penting." },
+            // ---- Soal 28 ----
+            { id: 28, question: "Perbedaan antara kegiatan yang terarah ke tujuan dengan kegiatan tujuan terletak pada...",
+                type: 'mcq', options: ["A. Kebutuhan intrinsik dan kebutuhan ekstrinsik",
+                    "B. Pengaruhnya terhadap kekuatan kebutuhan",
+                    "C. Kekuatan motif untuk dipuaskan",
+                    "D. Perilaku motivational"
+                ], correct: 1, explanation: "Perbedaan pada pengaruh terhadap kekuatan kebutuhan." },
+            // ---- Soal 29 ----
+            { id: 29, question: "Daya penggerak atau komitmen bagi seseorang untuk melaksanakan sesuatu adalah pengertian dari...",
+                type: 'mcq', options: ["A. Motivasi", "B. Eksistensi", "C. Persepsi", "D. Harapan"], correct: 0,
+                explanation: "Motivasi adalah daya penggerak." },
+            // ---- Soal 30 ----
+            { id: 30, question: "Kegiatan operant conditioning pada modifikasi perilaku dalam organisasi yang dilakukan seorang manajer bertujuan",
+                type: 'mcq', options: ["A. Mengenali perilaku khusus karyawan",
+                    "B. Memperkuat perilaku kinerja yang penting",
+                    "C. Mengukur berapa kali terjadi perilaku khusus dari karyawan",
+                    "D. Mengevaluasi perubahan dalam perilaku"
+                ], correct: 1, explanation: "Operant conditioning memperkuat perilaku penting." },
+            // ---- Soal 31 ----
+            { id: 31, question: "Interaksi antara berbagai kebutuhan perorangan, kebutuhan dan tujuan, serta peranan kelompok, norma-norma dan konflik dalam berfungsinya kelompok, adalah pengertian...",
+                type: 'mcq', options: ["A. Interaksi kelompok", "B. Konflik kelompok", "C. Dinamika kelompok",
+                    "D. Peranan kelompok"
+                ], correct: 2, explanation: "Dinamika kelompok mencakup interaksi kebutuhan dan norma." },
+            // ---- Soal 32 ----
+            { id: 32, question: "Pernyataan di bawah ini yang tepat mengenai teori kebutuhan dari Maslow adalah...",
+                type: 'mcq', options: ["A. Jika manusia menemui halangan dalam memenuhi kebutuhan, maka dia akan mencari kebutuhan lain yang mungkin dapat terpenuhi",
+                    "B. Kebutuhan yang paling rendah akan berusaha dipuaskan",
+                    "C. Manusia memiliki kebutuhan dari yang sederhana hingga kebutuhan yang rumit",
+                    "D. Kebutuhan yang telah terpuaskan akan tetap menjadi pendorong untuk berperilaku"
+                ], correct: 2, explanation: "Maslow menyatakan hierarki kebutuhan dari sederhana ke rumit." },
+            // ---- Soal 33 ----
+            { id: 33, question: "Kesatu paduan kelompok akan mendorong perilaku anggotanya menuju ke arah berikut...",
+                type: 'mcq', options: ["A. Konsekuensi positif yaitu Menghilangkan sifat dan perilaku individualistis dan kinerja yang rendah",
+                    "B. Konsekuensi negatif berupa hukuman yang diberikan kelompok kepada anggotanya",
+                    "C. Kepatuhan pada norma-norma yang berlaku dan dimilikinya kapasitas untuk menyelesaikan tugas-tugas kelompok",
+                    "D. Perasaan saling menerima dan saling percaya di antara para anggota"
+                ], correct: 2, explanation: "Kesatuan kelompok mendorong kepatuhan norma dan kapasitas tugas." },
+            // ---- Soal 34 ----
+            { id: 34, question: "Suatu persepsi bersama yang dianut oleh anggota-anggota suatu organisasi dan membedakannya dengan organisasi lain, adalah pengertian dari...",
+                type: 'mcq', options: ["A. Persepsi organisasi", "B. Perilaku organisasi", "C. Kinerja organisasi",
+                    "D. Budaya organisasi"
+                ], correct: 3, explanation: "Budaya organisasi adalah persepsi bersama yang membedakan." },
+            // ---- Soal 35 ----
+            { id: 35, question: "Pernyataan berikut ini yang benar tentang perilaku keorganisasian adalah....",
+                type: 'combination', correctKey: '12',
+                explanation: "Perilaku organisasi mencakup pandangan makro dan desain struktur." },
+            // ---- Soal 36 ----
+            { id: 36, question: "Kriteria evaluasi kinerja perlu mempertimbangkan beberapa hal adalah", type: 'mcq',
+                options: ["A. Bersifat praktis dan berguna baik bagi yang dinilai maupun yang menilai",
+                    "B. Dapat memberikan harapan promosi, efektivitas dan keputusan seleksi",
+                    "C. Meningkatkan pengertian manajerial bagi para manajer",
+                    "D. Mencapai kesimpulan evaluatif atas kinerja pegawai"
+                ], correct: 0, explanation: "Kriteria harus praktis dan berguna." },
+            // ---- Soal 37 ----
+            { id: 37, question: "Isi kebudayaan yang tertangkap oleh indra penglihatan termasuk dalam kategori tingkatan....",
+                type: 'mcq', options: ["A. Abstrak", "B. Setengah abstrak", "C. Nyata", "D. Setengah nyata"], correct: 2,
+                explanation: "Artifacts adalah budaya nyata." },
+            // ---- Soal 38 ----
+            { id: 38, question: "Menurut Cimmings & Schwab terdapat tahapan-tahapan dalam manajemen by objektive atau MBO adalah....",
+                type: 'mcq', options: ["A. Perencanaan tujuan, bekerja ke arah pencapaian tujuan, manajer dan karyawan bertumpu pada wakil tertentu, serta tujuan baru direncanakan, tujuan lanjut disesuaikan dan diperteguh",
+                    "B. Pokok persoalan pokok dokumentasi titik pokok pilihan dan pokok perbandingan",
+                    "C. Struktur, peranan, hirarki dan norma-norma",
+                    "D. Kepemimpinan yang sportif, motivasi yang berkembang komunikasi terbuka, dan pengambilan keputusan bersama"
+                ], correct: 0, explanation: "Tahapan MBO sesuai deskripsi." },
+            // ---- Soal 39 ----
+            { id: 39, question: "Pendekatan sikap dan perilaku dengan cara menjelaskan adanya perbedaan antara yang seharusnya dan yang akan terjadi dalam proses analisis kinerja adalah pendekatan...",
+                type: 'mcq', options: ["A. Inaktif", "B. Interaktif", "C. Proaktif", "D. Reaktif"], correct: 3,
+                explanation: "Pendekatan reaktif melihat kesenjangan." },
+            // ---- Soal 40 ----
+            { id: 40, question: "Gibson, dkk menyebutkan peran (role) sebagai....", type: 'mcq', options: [
+                    "A. Pola tindakan yang diharapkan dari seseorang dalam tindakan yang melibatkan orang lain",
+                    "B. Pola perilaku yang diharapkan yang memberikan kepada suatu posisi tertentu",
+                    "C. Posisi orang dalam hak, kewajiban, kekuasaan, dan tanggung jawab",
+                    "D. Apa yang harus dilakukan seseorang untuk mengesahkan posisinya"
+                ], correct: 1, explanation: "Peran adalah pola perilaku yang diharapkan dari posisi." },
+            // ---- Soal 41 ----
+            { id: 41, question: "Aspek manusia dalam organisasi Jika ditinjau dari psikologi sosial menekankan pada masalah",
+                type: 'mcq', options: ["A. Sikap manusia, interaksi sosial, dan kebudayaan",
+                    "B. Perilaku sosial, teknis dan keluarga",
+                    "C. Individu atau kelompok yang mempengaruhi dan mengubah perilaku orang lain",
+                    "D. perilaku manusia dalam lingkungan keorganisasian"
+                ], correct: 2, explanation: "Psikologi sosial fokus pada pengaruh dan perubahan perilaku." },
+            // ---- Soal 42 ----
+            { id: 42, question: "Kegagalan penerapan manajement by objektif (MBO) di Indonesia antara lain disebabkan oleh...",
+                type: 'combination', correctKey: '13',
+                explanation: "Harapan tidak realistis dan ketidakmampuan memberikan reward." },
+            // ---- Soal 43 ----
+            { id: 43, question: "Kepribadian merupakan seperangkat perilaku yang membentuk ciri/karakter respon seseorang terhadap situasi dan waktu tertentu, cenderung menekankan pada aspek...",
+                type: 'mcq', options: ["A. Ciri merupakan awal terbentuknya perilaku atau menjadi penyebab perilaku",
+                    "B. Stimulus seseorang terhadap lingkungan tertentu akan menghasilkan respon atau perilaku tertentu pula terhadap lingkungan tersebut",
+                    "C. Pembentukan ciri terpisah secara kultural karena merupakan bagian dari sifat manusia",
+                    "D. Memahami lingkungan adalah suatu proses yang aktif seseorang mencoba membuat lingkungannya itu mempunyai arti baginya"
+                ], correct: 0, explanation: "Kepribadian menekankan ciri sebagai penyebab perilaku." },
+            // ---- Soal 44 ----
+            { id: 44, question: "Pembentukan perilaku manusia menurut teori kebutuhan yang dipelajari salah satunya berasumsi bahwa....",
+                type: 'mcq', options: ["A. Kepuasan pekerjaan akan meningkatkan motivasi secara kuat",
+                    "B. Kebutuhan manusia diperoleh karena adanya kebudayaan",
+                    "C. Perilaku manusia dikuasai oleh personalitasnya",
+                    "D. Manusia ingin memenuhi berbagai kebutuhan yang berbeda"
+                ], correct: 1, explanation: "Kebutuhan dipelajari dari budaya." },
+            // ---- Soal 45 ----
+            { id: 45, question: "Pendekatan metodologi dalam pengembangan pengendalian mutu terpadu (PMT) terdiri atas...",
+                type: 'combination', correctKey: '13',
+                explanation: "Keterpaduan organisasi dan spesifikasi tanggung jawab." },
+            // ---- Soal 46 ----
+            { id: 46, question: "Gaya kepemimpinan yang hanya sedikit menggunakan kewenangan terhadap bawahan adalah gaya...",
+                type: 'mcq', options: ["A. Otokratik", "B. Bebas", "C. Demokratis", "D. Partisipatif"], correct: 1,
+                explanation: "Gaya bebas (laissez-faire) sedikit menggunakan kewenangan." },
+            // ---- Soal 47 ----
+            { id: 47, question: "Seorang manajer dapat disebut sebagai seorang pemimpin dengan kriteria...", type: 'mcq',
+                options: ["A. Mampu melakukan kegiatan yang lebih dari sekedar memimpin",
+                    "B. Melaksanakan kewenangan dan tanggung jawab menggunakan unsur-unsur manajemen secara efektif dan efisien",
+                    "C. Mampu mempengaruhi dan menggerakkan orang lain ke arah tercapainya tujuan baik tujuan organisasi, kelompok, ataupun tujuan pribadinya",
+                    "D. Memandang kerja sebagai suatu proses dalam urutan peristiwa atau dalam proses pembuatan keputusan"
+                ], correct: 2, explanation: "Pemimpin mampu mempengaruhi dan menggerakkan orang lain." },
+            // ---- Soal 48 ----
+            { id: 48, question: "Kunci keberhasilan hubungan manusiawi dalam arti sempit menurut Keith Davis adalah....",
+                type: 'mcq', options: ["A. Komunikasi", "B. Persuasi", "C. Motivasi", "D. Etika"], correct: 2,
+                explanation: "Motivasi adalah kunci hubungan manusiawi." },
+            // ---- Soal 49 ----
+            { id: 49, question: "Komunikasi sebagai alat menyampaikan pesan rahasia militer melalui telepon adalah konsep komunikasi ditinjau dari dimensi...",
+                type: 'mcq', options: ["A. Tingkat observasi", "B. Tingkat privasi", "C. Penekanan",
+                    "D. Normative Judgement"
+                ], correct: 1, explanation: "Dimensi privasi karena bersifat rahasia." },
+            // ---- Soal 50 ----
+            { id: 50, question: "Dua jenis tugas yang meliputi unsur-unsur penting kinerja menurut pandangan teori persepsi adalah tugas....",
+                type: 'mcq', options: ["A. Fungsional dan perilaku", "B. Fungsional dan struktural",
+                    "C. Fungsional dan operasional", "D. Fungsional dan tambahan"
+                ], correct: 0, explanation: "Tugas fungsional dan perilaku." },
+            // ---- Soal 51 ----
+            { id: 51, question: "Gerakan hubungan manusiawi atau hubungan Insani atau human relation mengandung makna...",
+                type: 'mcq', options: ["A. Organisasi merupakan jaringan hubungan yang saling bergantung",
+                    "B. Aspek komunikasi persuasif, sugesti dan motivasi menimbulkan kepuasan pada kedua belah pihak yaitu atasan dan bawahan",
+                    "C. Pekerja adalah manusia yang kompleks dan unik",
+                    "D. Kerjasama dan semangat kerja dalam proses manajemen"
+                ], correct: 1, explanation: "Human relation menekankan komunikasi persuasif, sugesti, dan motivasi." },
+            // ---- Soal 52 ----
+            { id: 52, question: "Ciri-ciri wewenang tradisional adalah...", type: 'combination', correctKey: '23',
+                explanation: "Wewenang tradisional berdasarkan ketentuan tradisional dan melembaga." },
+            // ---- Soal 53 ----
+            { id: 53, question: "Motivasi menurut teori harapan dan motivasi dari Vroom dijelaskan bahwa orang akan termotivasi bilamana ia percaya bahwa....",
+                type: 'combination', correctKey: '12',
+                explanation: "Percaya perilaku menghasilkan output dan output bernilai positif." },
+            // ---- Soal 54 ----
+            { id: 54, question: "Pendekatan kontinensi model Fiedler didasarkan pada asumsi bahwa...", type: 'mcq',
+                options: ["A. Orang lebih termotivasi dengan adanya imbalan dalam bekerja",
+                    "B. Efektivitas kepemimpinan tergantung kepada cara pimpinan menggunakan profesi bawahan",
+                    "C. Pemimpin yang unggul adalah yang mampu memuaskan pelanggan",
+                    "D. Seorang pemimpin juga dibentuk oleh faktor-faktor situasional"
+                ], correct: 3, explanation: "Fiedler menekankan faktor situasional." },
+            // ---- Soal 55 ----
+            { id: 55, question: "Pandangan hubungan manusiawi menilai bahwa konflik adalah sesuatu hal yang bersifat...",
+                type: 'mcq', options: ["A. Negatif", "B. Disfungsional karena adanya komunikasi yang jelek",
+                    "C. Rasional dan tidak perlu dihindari", "D. Merugikan organisasi"
+                ], correct: 2, explanation: "Konflik dipandang rasional dan tidak perlu dihindari." },
+            // ---- Soal 56 ----
+            { id: 56, question: "Pihak ketiga yang memiliki otoritas memaksakan kehendak agar pihak yang berkonflik setuju memecahkan masalahnya adalah...",
+                type: 'mcq', options: ["A. Mediator", "B. Arbitrator", "C. Konsiliator", "D. Konsultan"], correct: 1,
+                explanation: "Arbitrator memiliki wewenang memaksa." },
+            // ---- Soal 57 ----
+            { id: 57, question: "Berikut ini pernyataan yang benar tentang konsep kekuasaan adalah...", type: 'combination',
+                correctKey: '123', explanation: "Semua pernyataan benar." },
+            // ---- Soal 58 ----
+            { id: 58, question: "Gaya kepemimpinan yang cocok diterapkan ketika bawahan mempunyai tingkat kematangan yang sedang adalah gaya...",
+                type: 'mcq', options: ["A. Partisipasi", "B. Delegasi", "C. Pengerahan", "D. Instruksi"], correct: 0,
+                explanation: "Gaya partisipasi cocok untuk kematangan sedang." },
+            // ---- Soal 59 ----
+            { id: 59, question: "Kekuasaan yang bersumber dari hierarki formal organisasi adalah kekuasaan...", type: 'mcq',
+                options: ["A. Referensi", "B. Keahlian", "C. Imbalan", "D. Legitimasi"], correct: 3,
+                explanation: "Kekuasaan legitimasi berasal dari hierarki formal." },
+            // ---- Soal 60 ----
+            { id: 60, question: "Komunikasi antar budaya dapat dipengaruhi beberapa faktor, diantaranya...",
+                type: 'combination', correctKey: '123', explanation: "Semua faktor mempengaruhi." },
+            // ---- Soal 61 ----
+            { id: 61, question: "Konflik dalam sebuah kelompok dapat terjadi disebabkan oleh...", type: 'mcq',
+                options: ["A. Ketiadaan persaingan yang tetap antara para anggota",
+                    "B. Ada penghargaan dari pimpinan Meskipun tidak ada kontribusi dari masing-masing anggota",
+                    "C. Sistem reward and punishment diterapkan tanpa kriteria yang disepakati bersama",
+                    "D. Ketidaktegasan sikap pimpinan terhadap bawahan"
+                ], correct: 2, explanation: "Reward and punishment tanpa kriteria menimbulkan konflik." },
+            // ---- Soal 62 ----
+            { id: 62, question: "Perilaku menentang atau menghambat anggota yang memiliki otoritas, menentang ide orang lain, menyerang posisi orang lain dan perilaku sejenis lainnya merupakan bentuk konkret perilaku individu yang diidentifikasikan sebagai peranan....",
+                type: 'mcq', options: ["A. Mengganggu", "B. Tugas", "C. Pemeliharaan", "D. Tujuan"], correct: 0,
+                explanation: "Perilaku tersebut adalah peran mengganggu." },
+            // ---- Soal 63 ----
+            { id: 63, question: "Iklim komunikasi merupakan gabungan persepsi mengenai peristiwa komunikasi yang mempengaruhi cara hidup individu dalam organisasi. SEBAB Iklim komunikasi mengaitkan konteks organisasi dengan harapan, perasaan anggota organisasi dan membantu menjelaskan perilaku anggota organisasi.",
+                type: 'cause-effect', correctKey: 'A',
+                explanation: "Pernyataan dan alasan benar dan berhubungan." },
+            // ---- Soal 64 ----
+            { id: 64, question: "Untuk menciptakan dinamika kelompok yang baik dalam sebuah organisasi, maka ada beberapa hal yang perlu diperhatikan diantaranya....",
+                type: 'combination', correctKey: '12',
+                explanation: "Sasaran jelas dan komunikasi terbuka." },
+            // ---- Soal 65 ----
+            { id: 65, question: "Komunikasi non verbal selain dapat membantu kita memahami lebih mendalam bahasa verbal, dapat pula merumitkan komunikasi verbal, dalam arti...",
+                type: 'mcq', options: ["A. Komunikasi non verbal sering tidak bersifat universal artinya tidak bisa memberi makna yang sama untuk situasi yang berbeda",
+                    "B. Komunikasi nonverbal sering tidak bersifat universal artinya bergantung pada intonasi (penekanan) kata-katanya",
+                    "C. Adanya faktor jarak fisik dan tempat ketika berinteraksi",
+                    "D. Adanya tekanan waktu pada saat komunikasi berlangsung"
+                ], correct: 0, explanation: "Nonverbal tidak universal sehingga bisa merumitkan." },
+            // ---- Soal 66 ----
+            { id: 66, question: "Agar komunikasi dalam organisasi berlangsung efektif maka seorang manajer perlu memperhatikan beberapa faktor diantaranya...",
+                type: 'mcq', options: ["A. Ucapan konsisten dengan perbuatan",
+                    "B. Menerapkan pola komunikasi satu arah",
+                    "C. Pimpinan Puncak mendelegasikan kegiatan komunikasi kepada kepala bagian",
+                    "D. Meminimalkan komunikasi langsung tatap muka"
+                ], correct: 0, explanation: "Konsistensi ucapan dan perbuatan penting." },
+            // ---- Soal 67 ----
+            { id: 67, question: "Seseorang yang mendapatkan keuntungan finansial setelah menjadi anggota kelompok tertentu, adalah contoh dari alasan membentuk kelompok dengan motif....",
+                type: 'mcq', options: ["A. Gaya tarik", "B. Tujuan", "C. Penghargaan status", "D. Ekonomi"], correct: 3,
+                explanation: "Motif ekonomi karena keuntungan finansial." },
+            // ---- Soal 68 ----
+            { id: 68, question: "Perilaku manusia dalam organisasi yang termasuk dalam asumsi teori X antara lain adalah...",
+                type: 'mcq', options: ["A. Mereka sangat berambisius", "B. Suka bekerja keras",
+                    "C. Motivasi hanya timbul pada jenjang fisiologis",
+                    "D. Perlu dipaksa terlebih dahulu untuk mencapai tujuan organisasi"
+                ], correct: 3, explanation: "Teori X: perlu dipaksa." },
+            // ---- Soal 69 ----
+            { id: 69, question: "Model tingkah laku dalam pengambilan keputusan berkaitan dengan beberapa hal, diantaranya...",
+                type: 'mcq', options: ["A. Ketersediaan data dan informasi yang cukup",
+                    "B. Harapan tentang konsekuensi keputusan",
+                    "C. Konflik yang timbul sebagai dampak pemecahan masalah",
+                    "D. Terstruktur tidaknya masalah yang dihadapi"
+                ], correct: 1, explanation: "Harapan tentang konsekuensi keputusan." },
+            // ---- Soal 70 ----
+            { id: 70, question: "Fungsi utama komunikasi ke organisasian menurut Stephen P. Robins (1996) adalah",
+                type: 'combination', correctKey: '123', explanation: "Semua fungsi benar." },
+            // ---- Soal 71 ----
+            { id: 71, question: "Menurut banyak pakar komunikasi, komunikasi yang paling efektif dapat tercapai apabila...",
+                type: 'mcq', options: ["A. Disampaikan secara langsung tatap muka",
+                    "B. Komunikator mengenal secara pribadi para komunikan",
+                    "C. Tercapainya kesepahaman bersama antara komunikator dan komunikan",
+                    "D. Hanya disampaikan melalui bahasa verbal"
+                ], correct: 2, explanation: "Efektif jika ada kesepahaman." },
+            // ---- Soal 72 ----
+            { id: 72, question: "Perumusan bermacam alternatif tindakan dalam mengelola situasi yang dihadapi serta menetapkan alternatif yang tepat untuk mengatasi suatu masalah, merupakan pengertian dari kegiatan pengambilan....",
+                type: 'mcq', options: ["A. Kebijakan", "B. Keputusan", "C. Kebijaksanaan", "D. Instruksi"], correct: 1,
+                explanation: "Pengambilan keputusan." },
+            // ---- Soal 73 ----
+            { id: 73, question: "Contoh kategori kegiatan yang terarah ke tujuan diantaranya adalah...", type: 'combination',
+                correctKey: '13', explanation: "Kegiatan yang terarah ke tujuan (1 dan 3)." },
+            // ---- Soal 74 ----
+            { id: 74, question: "Dasar dari timbulnya motivasi seorang individu adalah...", type: 'combination',
+                correctKey: '123', explanation: "Semua benar." },
+            // ---- Soal 75 ----
+            { id: 75, question: "Klasifikasi motivasi Rational Ekonomic Man didasarkan pada asumsi bahwa...", type: 'mcq',
+                options: ["A. Perilaku manusia dapat dimotivasi secara finansial oleh organisasinya",
+                    "B. Manusia memperoleh eksistensi identitasnya melalui hubungan dengan orang lain",
+                    "C. Perilaku manusia dapat dilihat dari usahanya memenuhi jenjang kebutuhan yang tinggi",
+                    "D. Terdapat perbedaan kemampuan dan Kebutuhan individu dalam organisasi"
+                ], correct: 0, explanation: "Rational Economic Man dimotivasi finansial." },
+            // ---- Soal 76 ----
+            { id: 76, question: "Kelompok adalah suatu kumpulan individu yang eksistensinya sangat bermanfaat bagi anggotanya. Ini adalah definisi kelompok Jika ditinjau dari aspek...",
+                type: 'mcq', options: ["A. Organisasi", "B. Persepsi", "C. Interaksi", "D. Motivasi"], correct: 3,
+                explanation: "Ditinjau dari aspek motivasi." },
+            // ---- Soal 77 ----
+            { id: 77, question: "Faktor-faktor yang dapat menentramkan pegawai menurut Hertzberg diantaranya adalah...",
+                type: 'combination', correctKey: '123', explanation: "Semua faktor hygiene." },
+            // ---- Soal 78 ----
+            { id: 78, question: "Kegiatan pengembangan kelompok yang membiarkan kemungkinan menilai hubungan antar anggota serta bagaimana mereka mematuhi norma kelompok, dalam modal proses pengembangan kelompok terjadi pada tahapan....",
+                type: 'mcq', options: ["A. Motivasi dan produktivitas", "B. Pengendalian dan organisasi",
+                    "C. Komunikasi dan pengambilan keputusan", "D. Saling menerima (mutual acceptance)"
+                ], correct: 3, explanation: "Tahap saling menerima." },
+            // ---- Soal 79 ----
+            { id: 79, question: "Budaya organisasi dapat terlihat secara nyata, teramati, dirasakan, dipahami dan dialami oleh seluruh anggota organisasi dalam bentuk...",
+                type: 'combination', correctKey: '12',
+                explanation: "Keteraturan perilaku dan nilai-nilai baku." },
+            // ---- Soal 80 ----
+            { id: 80, question: "Subsistem ada dalam organisasi yang berfungsi melaksanakan transaksi input dan output. Adalah subsistem...",
+                type: 'mcq', options: ["A. Produksi", "B. Rentangan batas", "C. Pemeliharaan", "D. Adaptasi"], correct: 1,
+                explanation: "Boundary spanning." },
+            // ---- Soal 81 ----
+            { id: 81, question: "Tujuan evaluasi kinerja menurut Gibson (1989) adalah....", type: 'mcq', options: [
+                    "A. Dapat memberikan harapan promosi, efektivitas, dan keputusan seleksi",
+                    "B. Kesadaran manajerial yang kian meningkat karena memahami keberadaan dan persoalan bawahan",
+                    "C. Mencapai kesimpulan evaluasi atas hasil kerja",
+                    "D. Meningkatnya kesadaran bawahan karena adanya perhatian manajer terhadap kinerjanya"
+                ], correct: 0, explanation: "Memberikan harapan promosi dan seleksi." },
+            // ---- Soal 82 ----
+            { id: 82, question: "Kebudayaan mempunyai ciri-ciri antara lain....", type: 'mcq', options: [
+                    "A. Berkaitan dengan ciri-ciri biologis", "B. Hanya berkembang di satu generasi",
+                    "C. Mempunyai pola dan terintegrasi sebagai satu kebulatan",
+                    "D. Tidak bersifat adaptif"
+                ], correct: 2, explanation: "Budaya memiliki pola dan terintegrasi." },
+            // ---- Soal 83 ----
+            { id: 83, question: "Kegiatan yang dilakukan dalam tahapan bekerja ke arah pencapaian tujuan dalam manajemen by objektif (MBO) adalah...",
+                type: 'mcq', options: ["A. Manajer dan karyawan bertamu membahas tujuan yang akan dicapai selama periode tertentu",
+                    "B. Manajer dan karyawan membahas target operasional yang spesifik",
+                    "C. Karyawan mewujudkan rencana menuju ke arah pencapaian tujuan",
+                    "D. Manajer dan karyawan bertemu mengkaji ulang semua yang terjadi selama periode kinerja"
+                ], correct: 2, explanation: "Tahap bekerja: karyawan mewujudkan rencana." },
+            // ---- Soal 84 ----
+            { id: 84, question: "Tahapan yang sangat perlu diidentifikasi karena dapat mempengaruhi pengeluaran biaya fisik dan sumber daya manusia dalam kegiatan analisis kinerja, adalah tahap pokok ...",
+                type: 'mcq', options: ["A. Persoalan", "B. Dokumentasi", "C. Perbandingan", "D. Klasifikasi masalah"],
+                correct: 0, explanation: "Tahap persoalan." },
+            // ---- Soal 85 ----
+            { id: 85, question: "Seorang pegawai negeri sipil yang di rumahnya juga menjabat sebagai ketua RW, maka ia memainkan peran...",
+                type: 'mcq', options: ["A. Tunggal", "B. Berangkai (role set)", "C. Berganda (multiple roles)",
+                    "D. Pemicu konflik"
+                ], correct: 2, explanation: "Peran berganda." },
+            // ---- Soal 86 ----
+            { id: 86, question: "Tantangan utama seorang manajer/pimpinan adalah mengelola perilaku orang-orang di dalam organisasi, hal ini atas dasar asumsi berikut...",
+                type: 'mcq', options: ["A. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami sebagai hasil interaksi antara unsur individu dan unsur lingkungan",
+                    "B. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami sebagai perilaku termotivasi",
+                    "C. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami dari sudut pandang martabat dan nilai-nilai yang dianutnya",
+                    "D. Manusia sebagai unsur terpenting di dalam organisasi memiliki keunikan perilaku yang dapat dipahami dari aspek intensitas berperilaku dalam cara-cara tertentu"
+                ], correct: 0, explanation: "Perilaku manusia hasil interaksi individu dan lingkungan." },
+            // ---- Soal 87 ----
+            { id: 87, question: "Budaya inovatif dan berorientasi ke ke depan menuntut terjadinya perubahan sikap dan perilaku pegawai. SEBAB Penerapan strategi yang berasal dari budaya lain berpeluang menimbulkan Cultural shock (kejutan budaya) bagi seluruh anggota organisasi.",
+                type: 'cause-effect', correctKey: 'A',
+                explanation: "Pernyataan dan alasan benar dan berhubungan." },
+            // ---- Soal 88 ----
+            { id: 88, question: "Teori kepribadian yang memfokuskan kepada perkembangan dan perwujudan diri seseorang adalah teori...",
+                type: 'mcq', options: ["A. Psikodinamik", "B. Humanistik", "C. Ciri", "D. Psychoanalitis"], correct: 1,
+                explanation: "Humanistik fokus pada perwujudan diri." },
+            // ---- Soal 89 ----
+            { id: 89, question: "Dalam memahami perilaku manusia maka teori kognitif membahas tentang...", type: 'mcq',
+                options: ["A. Hubungan stimulan dan respon berkaitan dengan pemrosesan informasi antara rangsangan dan jawaban",
+                    "B. Faktor-faktor dalam diri seseorang yang mengarahkan perilakunya",
+                    "C. Proses motivasi seseorang",
+                    "D. Jenjang kebutuhan manusia"
+                ], correct: 0, explanation: "Teori kognitif tentang hubungan stimulus-respon dan pemrosesan informasi." },
+            // ---- Soal 90 ----
+            { id: 90, question: "Pendekatan dalam pengembangan pengendalian mutu terpadu atau PMT yang terdiri atas sistem pengawasan mutu produksi, evaluasi karyawan, adalah pendekatan...",
+                type: 'mcq', options: ["A. Budaya", "B. Metodologi", "C. Bisnis", "D. Tujuan organisasi"], correct: 1,
+                explanation: "Pendekatan metodologi." },
+            // ---- Soal 91 ----
+            { id: 91, question: "Sistem kepemimpinan otokrasi bijak yang dikemukakan Likert memiliki ciri diantaranya ...",
+                type: 'mcq', options: ["A. Munculnya organisasi informasi dalam organisasi",
+                    "B. Ada sedikit komunikasi ke atas meskipun terdistorsi",
+                    "C. Pengambilan keputusan dilakukan kelompok",
+                    "D. Pengambilan keputusan dilakukan di seluruh jenjang organisasi"
+                ], correct: 1, explanation: "Otokrasi bijak memiliki komunikasi ke atas yang terdistorsi." },
+            // ---- Soal 92 ----
+            { id: 92, question: "Dalam sebuah organisasi hal yang membedakan manajer dengan pemimpin, diantaranya karena manajer...",
+                type: 'mcq', options: ["A. Cenderung mengambil sikap impersonal",
+                    "B. Berhubungan dengan orang-orang dengan cara empati",
+                    "C. Mempunyai lingkup kegiatan yang lebih singkat daripada pemimpin",
+                    "D. Mengembangkan visi masa depan"
+                ], correct: 0, explanation: "Manajer cenderung impersonal, pemimpin lebih empati." },
+            // ---- Soal 93 ----
+            { id: 93, question: "Hubungan manusiawi dalam arti luas mempunyai ciri-ciri antara lain...", type: 'combination',
+                correctKey: '13', explanation: "Berorientasi kegiatan dan bersifat interkomotif-dialogis." },
+            // ---- Soal 94 ----
+            { id: 94, question: "Komunikasi yang efektif di dalam organisasi ditandai oleh hal berikut...", type: 'combination',
+                correctKey: '13',
+                explanation: "Manajer sadar pentingnya komunikasi dan komunikasi sebagai proses berkelanjutan." },
+            // ---- Soal 95 ----
+            { id: 95, question: "Unsur yang paling kuat mempengaruhi vitalitas kerja menurut teori persepsi adalah...",
+                type: 'mcq', options: ["A. Pemenuhan Harapan", "B. Harapan awal", "C. Kinerja", "D. Peluang"], correct: 1,
+                explanation: "Harapan awal adalah unsur terkuat." },
+            // ---- Soal 96 ----
+            { id: 96, question: "Penemuan study Hawthorne yang membawa implikasi penting dalam pengembangan perilaku organisasi, adalah...",
+                type: 'combination', correctKey: '123', explanation: "Semua implikasi benar." },
+            // ---- Soal 97 ----
+            { id: 97, question: "Pernyataan yang benar tentang konsep wewenang adalah....", type: 'combination',
+                correctKey: '12', explanation: "Wewenang bersumber dari posisi dan peranan formal." },
+            // ---- Soal 98 ----
+            { id: 98, question: "Asumsi valensi dalam teori harapan mengandung pengertian...", type: 'mcq', options: [
+                    "A. Penilaian subjektif seseorang atas kemungkinan bahwa ia akan memperoleh tertentu dari sebuah tindakan",
+                    "B. Kemungkinan bahwa usaha seseorang akan menghasilkan pencapaian suatu tujuan tertentu",
+                    "C. Nilai yang diberikan orang kepada suatu hasil yang diharapkan",
+                    "D. Seseorang yang berperilaku dengan cara tertentu akan memperoleh hal tertentu juga sebagai kompensasinya"
+                ], correct: 2, explanation: "Valensi adalah nilai yang diberikan pada hasil." },
+            // ---- Soal 99 ----
+            { id: 99, question: "Model kepemimpinan manajemen by wondering around (MBWA) Tom Peters dan Nancy Austin menekankan pada kemampuan...",
+                type: 'mcq', options: ["A. Mendorong seluruh jajaran organisasi untuk selalu berkreasi dan berkarya secara inovatif termasuk penggunaan alat-alat produksi modern",
+                    "B. Menetapkan dan menjelaskan tujuan yang akan dicapai kepada bawahannya dan membantu mereka menemukan solusi untuk mencapai tujuan",
+                    "C. Menumbuhkan inisiatif dan menggali kreativitas bawahan",
+                    "D. Menyediakan fasilitas kegiatan bawaan"
+                ], correct: 2, explanation: "MBWA menekankan inisiatif dan kreativitas bawahan." },
+            // ---- Soal 100 ----
+            { id: 100, question: "Konflik merupakan konsekuensi rasional yang dapat terjadi karena adanya interaksi dan berbagai perbedaan kepentingan, dikenal dengan istilah pandangan....",
+                type: 'mcq', options: ["A. Hubungan manusiawi", "B. Tradisional", "C. Manajemen ilmiah", "D. Modern"],
+                correct: 0, explanation: "Pandangan hubungan manusiawi." },
+            // ---- Soal 101 ----
+            { id: 101, question: "Peran seorang mediator dalam penyelesaian konflik adalah....", type: 'mcq',
+                options: ["A. Memecahkan masalah dengan cara persuasif kepada pihak-pihak yang berkonflik",
+                    "B. Memaksakan kehendaknya agar para pihak yang berkonflik setuju menyelesaikan masalah",
+                    "C. Melakukan komunikasi informal kepada para pihak yang berkonflik",
+                    "D. Mengerjakan masalah konflik dengan cara komunikasi dan analisis"
+                ], correct: 3, explanation: "Mediator mengerjakan konflik dengan komunikasi dan analisis." },
+            // ---- Soal 102 ----
+            { id: 102, question: "Kepemimpinan dan kekuasaan merupakan konsep yang berkaitan satu sama lain namun memiliki perbedaan dalam hal...",
+                type: 'mcq', options: ["A. Ketergantungan yang menimbulkan perilaku tertentu",
+                    "B. Kesesuaian tujuan antara pemimpin dan bawahan",
+                    "C. Penggunaan kekuasaan pada posisi tertentu",
+                    "D. Menentukan atau membatasi hasil-hasil"
+                ], correct: 1, explanation: "Perbedaan pada kesesuaian tujuan." },
+            // ---- Soal 103 ----
+            { id: 103, question: "Kekuasaan hubungan efektif diterapkan kepada bawahan yang berada pada tingkat kematangan M-2 karena...",
+                type: 'mcq', options: ["A. bawahan akan sangat terbantu dalam pelaksanaan tugas apabila pemimpin mau menjelaskan berbagai hal yang berkaitan dengan tugas bawahan",
+                    "B. Bawahan akan lebih bergairah dalam bekerja Apabila ada hubungan yang baik dengan atasannya",
+                    "C. Bawahan sangat menghormati keabsahan jabatan/posisi yang dipegang pimpinan",
+                    "D. Mempertebal rasa keyakinan dan meningkatkan semangat kerja bawahan"
+                ], correct: 1, explanation: "M-2 butuh hubungan baik." },
+            // ---- Soal 104 ----
+            { id: 104, question: "Ada beberapa kemungkinan yang mempengaruhi pemilihan cara atau taktik kekuasaan adalah....",
+                type: 'combination', correctKey: '123', explanation: "Semua faktor mempengaruhi." },
+            // ---- Soal 105 ----
+            { id: 105, question: "Jika komunikator dan penerima pesan dalam sebuah proses komunikasi yang mempunyai kultur yang berbeda maka akan tercipta sebuah komunikasi....",
+                type: 'mcq', options: ["A. Antar pribadi", "B. Antar budaya", "C. Antar generasi", "D. Antar individu"],
+                correct: 1, explanation: "Komunikasi antar budaya." },
+            // ---- Soal 106 ----
+            { id: 106, question: "Pengaruh Persaingan di dalam kelompok akan memunculkan perilaku berikut....", type: 'mcq',
+                options: ["A. Koordinasi kerja yang baik perhatian dari para anggota dan pemahaman yang bersama terhadap informasi",
+                    "B. Berorientasi prestasi Kerja dan komunikasi terbuka",
+                    "C. Persepsi positif anggota terhadap kelompoknya dan interaksi lebih terbuka",
+                    "D. Koordinasi sulit diciptakan, tidak menyukai pekerjaannya dan tidak menyukai kelompoknya"
+                ], correct: 3, explanation: "Persaingan dapat menyebabkan koordinasi sulit dan ketidaksukaan." },
+            // ---- Soal 107 ----
+            { id: 107, question: "Perilaku seperti menawarkan ide dan meminta pendapat adalah contoh dari peranan fungsional dalam kelompok yaitu peranan....",
+                type: 'mcq', options: ["A. Pemeliharaan", "B. Tugas", "C. Mengganggu", "D. Pengaturan"], correct: 1,
+                explanation: "Menawarkan ide adalah peran tugas." },
+            // ---- Soal 108 ----
+            { id: 108, question: "Komunikasi organisasi pada era sumber daya manusia ditandai dengan ciri-ciri diantaranya...",
+                type: 'mcq', options: ["A. Bersifat bottom up", "B. Pengambilan keputusan dilakukan secara sentralisasi",
+                    "C. Cenderung formal", "D. Komunikasi digunakan untuk mendukung perencanaan partisipatif"
+                ], correct: 3, explanation: "Era SDM mendukung perencanaan partisipatif." },
+            // ---- Soal 109 ----
+            { id: 109, question: "Agar dinamika kelompok dapat terpelihara dengan baik, maka harus diperhatikan beberapa hal berikut, adalah....",
+                type: 'mcq', options: ["A. Sasaran yang jelas dan ditetapkan bersama, komunikasi yang terbuka dan efektif, kepemimpinan yang efektif dan adanya norma-norma dan pertumbuhan kelompok",
+                    "B. Interaksi dan perilaku positif yang dapat meningkatkan prestasi kerja",
+                    "C. Keserasian dan keharmonisan antara kekuatan-kekuatan motivasi non ekonomi yang dimiliki anggota kelompok",
+                    "D. Terciptanya kerjasama yang positif dan terwujudnya koordinasi yang baik"
+                ], correct: 0,
+                explanation: "Dinamika kelompok memerlukan sasaran jelas, komunikasi terbuka, kepemimpinan efektif, norma." },
+            // ---- Soal 110 ----
+            { id: 110, question: "Berikut ini yang termasuk ciri-ciri komunikasi non verbal adalah...", type: 'combination',
+                correctKey: '12', explanation: "Intonasi dan gerakan tubuh." },
+            // ---- Soal 111 ----
+            { id: 111, question: "Manfaat dari perilaku pimpinan yang selaras antara tindakan dengan perkataan adalah ...",
+                type: 'mcq', options: ["A. Mencairkan hubungan pimpinan dengan bawahan",
+                    "B. Meningkatkan kredibilitas pemimpin",
+                    "C. Menciptakan iklim keterbukaan",
+                    "D. Timbulnya pemahaman pimpinan terhadap olahan karyawan"
+                ], correct: 1, explanation: "Konsistensi meningkatkan kredibilitas." },
+            // ---- Soal 112 ----
+            { id: 112, question: "Kelompok yang dibentuk untuk memenuhi kebutuhan sosial para anggotanya adalah kelompok...",
+                type: 'mcq', options: ["A. Kepentingan", "B. Persahabatan", "C. Informal", "D. Formal"], correct: 2,
+                explanation: "Kelompok informal memenuhi kebutuhan sosial." },
+            // ---- Soal 113 ----
+            { id: 113, question: "Ditinjau dari teori hierarki kebutuhan A.H. Maslow, mereka yang masuk asumsi teori 'Y' akan menampilkan perilaku motivasional dengan ciri memiliki...",
+                type: 'mcq', options: ["A. Motivasi kerja yang tinggi dan kuat",
+                    "B. Perilaku untuk memelihara semangat kerja",
+                    "C. Kebutuhan order rendah seperti kebutuhan fisik, rasa aman, dan sosial",
+                    "D. Kebutuhan order tinggi seperti kebutuhan penghargaan atas prestasi yang diraihnya dan aktualisasi diri"
+                ], correct: 3, explanation: "Teori Y memiliki kebutuhan order tinggi." },
+            // ---- Soal 114 ----
+            { id: 114, question: "Kondisi-kondisi seperti ketidakpastian dan risiko harus diperhatikan manajer dalam proses pengambilan keputusan, khususnya pada tahapan...",
+                type: 'mcq', options: ["A. Pengembangan alternatif", "B. Evaluasi alternatif-alternatif",
+                    "C. Pemilihan alternatif", "D. Identifikasi masalah"
+                ], correct: 1, explanation: "Evaluasi alternatif mempertimbangkan risiko." },
+            // ---- Soal 115 ----
+            { id: 115, question: "Salah satu hambatan dalam komunikasi ke organisasian adalah jargon, yakni berupa...",
+                type: 'mcq', options: ["A. Terlalu banyaknya informasi yang diterima Manager",
+                    "B. Penggunaan simbol-simbol yang berbeda",
+                    "C. Istilah khusus yang hanya dipahami anggota kelompok tertentu saja",
+                    "D. Kegiatan penguraian sandi yang berbeda"
+                ], correct: 2, explanation: "Jargon adalah istilah khusus kelompok." },
+            // ---- Soal 116 ----
+            { id: 116, question: "Menurut Rogers dan Kincaid (1981) komunikasi yang efektif adalah komunikasi yang dapat menciptakan...",
+                type: 'mcq', options: ["A. Kesepahaman dan kesepakatan bersama antara komunikator dan komunikan",
+                    "B. Penyampaian informasi dan pengertian dengan menggunakan tanda-tanda yang sama",
+                    "C. Nilai-nilai kepercayaan diantara komunikator dan komunikan",
+                    "D. Perubahan perilaku yang sengaja dibangun untuk keperluan berkomunikasi"
+                ], correct: 0, explanation: "Efektif menciptakan kesepahaman dan kesepakatan." },
+            // ---- Soal 117 ----
+            { id: 117, question: "Jenis keputusan yang dibedakan menurut kejadian dan proses pengambilan keputusan, adalah keputusan",
+                type: 'combination', correctKey: '12',
+                explanation: "Keputusan terprogram dan tidak terprogram." },
+            // ---- Soal 118 ----
+            { id: 118, question: "Jack Halloran (1981) mengaitkan motivasi dan perilaku sebagai berikut...", type: 'mcq',
+                options: ["A. Perilaku muncul karena adanya upaya pemenuhan kebutuhan",
+                    "B. Perilaku seseorang sebagai tidak rasional",
+                    "C. Motivasi adalah kebutuhan internal yang dipuaskan melalui upaya-upaya eksternal",
+                    "D. Perilaku manusia akan terjadi pada saat kebutuhan yang sangat kuat untuk segera dipenuhi"
+                ], correct: 0, explanation: "Perilaku muncul dari upaya pemenuhan kebutuhan." },
+            // ---- Soal 119 ----
+            { id: 119, question: "Teori proses motivasi menitikberatkan perhatiannya pada...", type: 'mcq', options: [
+                    "A. Daya penggerak atau komitmen seseorang untuk melakukan sesuatu",
+                    "B. Faktor-faktor dalam diri seseorang yang menguatkan, mengarahkan, mendukung dan menghentikan perilakunya",
+                    "C. Deskripsi dan Analisis alasan sebuah perilaku dikuatkan, diarahkan, didukung dan dihentikan",
+                    "D. Motif perilaku yang mencakup Kebutuhan individu, Harapan, dan persepsi"
+                ], correct: 2, explanation: "Teori proses menganalisis alasan perilaku." },
+            // ---- Soal 120 ----
+            { id: 120, question: "Asumsi yang mendasari klasifikasi motivasi Complex Man adalah manusia...", type: 'mcq',
+                options: ["A. Memiliki perbedaan kemampuan dan kebutuhan",
+                    "B. Dapat dimotivasi oleh kebutuhan ekonominya",
+                    "C. Memperoleh keberadaan identitasnya melalui hubungan dengan orang lain",
+                    "D. Memerlukan tantangan dan rasa bangga terhadap pekerjaannya"
+                ], correct: 0, explanation: "Complex Man memiliki perbedaan kemampuan dan kebutuhan." },
+            // ---- Soal 121 ----
+            { id: 121, question: "Dinamika kelompok dapat dipahami sebagai...", type: 'mcq', options: [
+                    "A. Struktur dan pembagian kerja guna menyelesaikan pekerjaan",
+                    "B. Interaksi antara kebutuhan-kebutuhan perorangan, tujuan, serta peranan kelompok, norma-norma dan konflik dalam berfungsinya kelompok",
+                    "C. Sejumlah orang yang berinteraksi Dalam suatu rangkaian pertemuan tatap muka",
+                    "D. Saling ketergantungan dalam suatu interaksi antar pribadi"
+                ], correct: 1,
+                explanation: "Dinamika kelompok mencakup interaksi kebutuhan, tujuan, peran, norma, konflik." },
+            // ---- Soal 122 ----
+            { id: 122, question: "Yang dimaksud dengan kebutuhan eksistensi berdasarkan teori ERG adalah kebutuhan....",
+                type: 'mcq', options: ["A. Fisiologi seperti materi", "B. Keterkaitan seperti keluarga dan sahabat",
+                    "C. Pertumbuhan seperti produktivitas", "D. Aktualisasi diri"
+                ], correct: 0, explanation: "Kebutuhan eksistensi (E) adalah fisiologi dan materi." },
+            // ---- Soal 123 ----
+            { id: 123, question: "Dalam model proses pengembangan kelompok terdapat tahap dimana motivasi kerja sering menjadi masalah yang dilematis bagi manajer karena adanya berbagai kebutuhan manusia. Hal ini terjadi pada tahap....",
+                type: 'mcq', options: ["A. Saling menerima", "B. Komunikasi dan pengambilan keputusan",
+                    "C. Motivasi dan produktivitas", "D. Pengendalian dan organisasi"
+                ], correct: 2, explanation: "Tahap motivasi dan produktivitas." },
+            // ---- Soal 124 ----
+            { id: 124, question: "Kebijakan yang mencerminkan kepercayaan terhadap organisasi tentang bagaimana memperlakukan karyawan dan konsumen adalah budaya organisasi berbentuk....",
+                type: 'mcq', options: ["A. Norma-norma", "B. Nilai-nilai baku", "C. Iklim organisasi", "D. Filsafat"],
+                correct: 3, explanation: "Filsafat organisasi." },
+            // ---- Soal 125 ----
+            { id: 125, question: "Perilaku keorganisasian menurut Stephen B. Robins (1990) merupakan pandangan makro terhadap organisasi, yaitu membahas....",
+                type: 'mcq', options: ["A. Aspek-aspek tingkah laku manusia dalam organisasi atau kelompok tertentu",
+                    "B. Desain dan struktur organisasi serta proses perilaku individu dan kelompok",
+                    "C. Aspek yang ditimbulkan dari pengaruh organisasi terhadap manusia dan sebaliknya pengaruh manusia terhadap organisasinya",
+                    "D. Proses pembentukan Persepsi, nilai-nilai dan motivasi"
+                ], correct: 1, explanation: "Pandangan makro membahas desain, struktur, dan proses perilaku." },
+            // ---- Soal 126 ----
+            { id: 126, question: "Kegiatan penilaian oleh manajer terhadap karyawan dengan berbasis komputer dan mengedepankan objektivitas adalah pengertian dari...",
+                type: 'mcq', options: ["A. Evaluasi jabatan", "B. Evaluasi kinerja", "C. Analisis kinerja",
+                    "D. Analisis jabatan"
+                ], correct: 1, explanation: "Evaluasi kinerja berbasis komputer." },
+            // ---- Soal 127 ----
+            { id: 127, question: "Kebudayaan memiliki ciri-ciri diantaranya....", type: 'mcq', options: [
+                    "A. Berkaitan dengan ciri-ciri biologis", "B. Bersifat simbolik",
+                    "C. Tidak terintegrasi sebagai suatu kebulatan", "D. Bersifat non adaptif"
+                ], correct: 1, explanation: "Budaya bersifat simbolik." },
+            // ---- Soal 128 ----
+            { id: 128, question: "Kegiatan yang dilakukan pada tahapan perencanaan tujuan menggunakan manajemen berdasarkan sasaran (MBS) diantaranya...",
+                type: 'combination', correctKey: '13',
+                explanation: "Manajer dan karyawan bertemu membahas tujuan dan merumuskan secara tertulis." },
+            // ---- Soal 129 ----
+            { id: 129, question: "Kegiatan analisis kinerja yang bertujuan menemukan perbedaan komunikasi manusia dan organisasi yang dianalisis dibandingkan dengan data, prinsip, atau keadaan lingkungan, terjadi pada tahapan pokok...",
+                type: 'mcq', options: ["A. Persoalan", "B. Pilihan", "C. Klasifikasi", "D. Dokumentasi"], correct: 2,
+                explanation: "Tahap klasifikasi." },
+            // ---- Soal 130 ----
+            { id: 130, question: "Peranan yang dimainkan oleh seorang individu di dalam kelompok atau organisasi dapat berbentuk....",
+                type: 'combination', correctKey: '123', explanation: "Semua bentuk peran." },
+            // ---- Soal 131 ----
+            { id: 131, question: "Salah satu asumsi penting tentang perilaku individu menurut Gibson adalah....", type: 'mcq',
+                options: ["A. Perilaku dapat timbul tanpa didahului adanya stimulus",
+                    "B. Rasa frustasi dan konflik dapat mengganggu perilaku yang terarah kepada tujuan",
+                    "C. Tujuan diarahkan kepada perilaku",
+                    "D. Motivasi timbul karena adanya perilaku"
+                ], correct: 1, explanation: "Frustasi dan konflik mengganggu perilaku." },
+            // ---- Soal 132 ----
+            { id: 132, question: "Dampak yang mungkin terjadi dalam perubahan budaya organisasi di Indonesia karena menggunakan kinerja dari luar negeri antara lain...",
+                type: 'combination', correctKey: '12',
+                explanation: "Ketidaknyamanan karena mutu dan sistem ketat." },
+            // ---- Soal 133 ----
+            { id: 133, question: "Pendekatan ciri dalam teori kepribadian banyak mendapat kritikan tajam adalah....",
+                type: 'combination', correctKey: '123', explanation: "Semua kritikan benar." },
+            // ---- Soal 134 ----
+            { id: 134, question: "Menurut Gibson dkk Sikap mempunyai pengaruh tertentu adalah...", type: 'combination',
+                correctKey: '123', explanation: "Semua pengaruh benar." },
+            // ---- Soal 135 ----
+            { id: 135, question: "Prinsip-prinsip kualitas yang terkandung dalam pengendalian mutu terpadu (PMT) adalah...",
+                type: 'mcq', options: ["A. Pengendalian tidak hanya pada hasil output saja tetapi ketika terdapat hasil Setiap proses",
+                    "B. Segala kegiatan diprioritaskan pada kegiatan vital",
+                    "C. Pengendalian selalu dimulai dengan Menetapkan sasaran yang terukur secara kuantitatif maupun kualitatif untuk menjamin ketepatannya",
+                    "D. Berorientasi pelanggan artinya mutu yang ingin dicapai ditujukan untuk memelihara dan memuaskan pelanggan atau pengguna produk"
+                ], correct: 3, explanation: "Prinsip PMT berorientasi pelanggan." }
+        ];
 
         // ============================================================
         //  2.  KONFIGURASI & STATE
@@ -2511,6 +1723,7 @@
         // ============================================================
         function buildQuestions(source) {
             const result = [];
+            // Buat target posisi agar jawaban benar tersebar merata
             const targetPositions = [];
             for (let i = 0; i < source.length; i++) {
                 targetPositions.push(i % 4);
@@ -2519,25 +1732,69 @@
 
             for (let i = 0; i < source.length; i++) {
                 const q = source[i];
-                const opts = q.options.slice();
-                const correctText = opts[q.correct];
-                const shuffled = shuffle(opts);
-                const newCorrect = shuffled.indexOf(correctText);
-                const targetPos = targetPositions[i % targetPositions.length];
-                const wrongOpts = opts.filter(o => o !== correctText);
-                shuffle(wrongOpts);
-                const newOpts = [];
-                for (let p = 0; p < 4; p++) {
-                    if (p === targetPos) newOpts[p] = correctText;
-                    else newOpts[p] = wrongOpts.pop();
+                // Jika tipe 'combination' atau 'cause-effect', kita gunakan pendekatan khusus
+                // Karena data soal sudah memiliki options bawaan (dari MASTER_QUESTIONS)
+                // Kita akan tetap gunakan options dari data asli, tetapi untuk tipe mcq saja kita acak.
+                if (q.type === 'mcq') {
+                    const opts = q.options.slice();
+                    const correctText = opts[q.correct];
+                    // Acak posisi jawaban benar secara merata
+                    const shuffled = shuffle(opts);
+                    const newCorrect = shuffled.indexOf(correctText);
+                    // Tapi untuk distribusi merata, kita paksa posisi sesuai targetPositions[i]
+                    // Kita ambil semua opsi kecuali benar, lalu acak
+                    const wrongOpts = opts.filter(o => o !== correctText);
+                    shuffle(wrongOpts);
+                    const newOpts = [];
+                    const target = targetPositions[i % targetPositions.length];
+                    for (let p = 0; p < 4; p++) {
+                        if (p === target) newOpts[p] = correctText;
+                        else newOpts[p] = wrongOpts.pop();
+                    }
+                    result.push({
+                        id: q.id,
+                        question: q.question,
+                        options: newOpts,
+                        correct: target,
+                        explanation: q.explanation || 'Penjelasan tidak tersedia.'
+                    });
+                } else if (q.type === 'combination' || q.type === 'cause-effect') {
+                    // Untuk combination dan cause-effect, kita gunakan options yang sudah tersedia
+                    // karena pilihan jawaban sudah baku (A, B, C, D dengan kombinasi tertentu)
+                    // Kita tetap bisa mengacak posisi opsi, tetapi kita perlu menyesuaikan correct
+                    const opts = q.options || (q.type === 'combination' ?
+                        ['A. 1, 2, dan 3', 'B. 1 dan 2', 'C. 2 dan 3', 'D. 1 dan 3'] :
+                        ['A. Pernyataan benar, alasan benar, dan keduanya menunjukkan hubungan sebab akibat',
+                            'B. Pernyataan benar, alasan benar, tetapi tidak menunjukkan hubungan sebab akibat',
+                            'C. Pernyataan benar, alasan salah',
+                            'D. Pernyataan salah, alasan benar'
+                        ]);
+                    // Tentukan correctKey untuk combination
+                    let correctIdx = 0;
+                    if (q.type === 'combination') {
+                        const comboMap = { '123': 0, '12': 1, '23': 2, '13': 3 };
+                        correctIdx = comboMap[q.correctKey] !== undefined ? comboMap[q.correctKey] : 0;
+                    } else if (q.type === 'cause-effect') {
+                        const causeMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+                        correctIdx = causeMap[q.correctKey] !== undefined ? causeMap[q.correctKey] : 0;
+                    }
+                    const correctText = opts[correctIdx];
+                    const wrongOpts = opts.filter((_, idx) => idx !== correctIdx);
+                    shuffle(wrongOpts);
+                    const newOpts = [];
+                    const target = targetPositions[i % targetPositions.length];
+                    for (let p = 0; p < 4; p++) {
+                        if (p === target) newOpts[p] = correctText;
+                        else newOpts[p] = wrongOpts.pop();
+                    }
+                    result.push({
+                        id: q.id,
+                        question: q.question,
+                        options: newOpts,
+                        correct: target,
+                        explanation: q.explanation || 'Penjelasan tidak tersedia.'
+                    });
                 }
-                result.push({
-                    id: q.id,
-                    question: q.question,
-                    options: newOpts,
-                    correct: targetPos,
-                    explanation: q.explanation || 'Penjelasan tidak tersedia.'
-                });
             }
             return result;
         }
@@ -2978,7 +2235,7 @@
         }
 
         init();
-        console.log(`✅ ${TOTAL} soal Manajemen Proyek berhasil dimuat.`);
+        console.log(`✅ ${TOTAL} soal berhasil dimuat.`);
     </script>
 </body>
 </html>
